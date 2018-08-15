@@ -11,7 +11,7 @@ public class Hero extends LiveEntity{
         /*Prisoner names:
         * --Lincoln 'the brute'
         * --Michael 'the legend'
-        * --Fernando 'the scheptic'
+        * --Fernando 'the sceptic'
         * */
     }
 }
