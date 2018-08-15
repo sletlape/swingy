@@ -1,5 +1,6 @@
 import com.sun.tools.javac.code.Attribute;
 import enums.EInterfaces;
+import view.Cli;
 
 import java.util.*;
 
@@ -8,8 +9,9 @@ public class Main {
     public static void main(String args[]){
         if (validArgs(args)){
             Enum userChoice = getInterface(args[0].toUpperCase());
-
-            System.out.println("You have chosen to use " + userChoice);
+            if (userChoice.name().equals("CLI")){
+                Cli usrInter = new Cli();
+            }
         }
     }
 

@@ -1,5 +1,9 @@
 package view;
 
-public class Cli {
+import controller.CLIMainController;
 
+public class Cli{
+    public Cli(){
+        new CLIMainController("manny","ang",0);
+    }
 }
