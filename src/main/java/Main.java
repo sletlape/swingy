@@ -1,31 +1,33 @@
+import com.sun.tools.javac.code.Attribute;
+import enums.EInterfaces;
+
 import java.util.*;
 
 public class Main {
 
-    public static String question;
-    public static Scanner in = new Scanner (System.in);
-
     public static void main(String args[]){
+        if (validArgs(args)){
+            Enum userChoice = getInterface(args[0].toUpperCase());
 
-        question = "o";
-
-        while (true)
-        {
-            switch (question)
-            {
-                case "0":
-                    System.out.println("Please enter your name:");
-                    question = "1";
-
-                case "1":
-                     String usrName = in.next();
-                    question = "1A";
-                    break;
-
-                case "1A":
-                    System.out.println("\nYou are a prisoner trying to escape from prison...");
-                    question = "2";
-            }
+            System.out.println("You have chosen to use " + userChoice);
         }
+    }
+
+    private static boolean validArgs(String[] args) {
+        if (args.length != 1) {
+                System.out.println("You can only pass 1 argument!");
+            return false;
+        }
+        return true;
+    }
+
+    private static EInterfaces getInterface(String argsUpper) {
+        if (argsUpper.equals("CLI"))
+            return EInterfaces.CLI;
+        else if (argsUpper.equals("GUI"))
+            return EInterfaces.GUI;
+        else
+            System.out.println("Interfaces can only be 'CLI' or 'GUI'");
+        return null;
     }
 }
