@@ -9,10 +9,9 @@ public class CLIMainController extends InterfaceController{
         System.out.println("+-----------------------------------+");
         System.out.println("|Running the Command Line Interface!|");
         System.out.println("+-----------------------------------+");
-        System.out.println("\nUser:\t\t\t" + name);
-        System.out.println("Avatar:\t\t" + avatarType);
-        System.out.println("XP:\t\t\t\t " + name);
-        System.out.println("\n####################################################################");
-
+        System.out.println("User:\t\t\t" + name);
+        System.out.println("Avatar:\t\t\t" + avatarType);
+        System.out.println("XP:\t\t\t\t" + name);
+        System.out.println("####################################################################");
     }
 }

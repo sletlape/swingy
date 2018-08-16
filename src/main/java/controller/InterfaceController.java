@@ -1,5 +1,12 @@
 package controller;
 
+/*Store all values in variables then pass the variable to GUI or CLI*/
+
+import enums.EInterfaces;
+import view.Cli;
+import view.Gui;
+import view.UserInterface;
+
 public class InterfaceController {
     protected String    userName;
     protected String    avatarType;
@@ -11,5 +18,16 @@ public class InterfaceController {
         this.xp = xp;
     }
 
-    /*Store all values in variables then pass the variable to GUI or CLI*/
+    public UserInterface chosenInterface(EInterfaces userChoice, int width, int height){
+
+        if (userChoice.name().equals("CLI")) {
+            Cli cli = new Cli();
+            return cli;
+        }
+        if (userChoice.name().equals("GUI")){
+            Gui gui = new Gui("Swingy", 300,300);
+            return gui;
+        }
+        return null;
+    }
 }

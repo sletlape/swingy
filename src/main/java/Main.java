@@ -1,4 +1,5 @@
 import com.sun.tools.javac.code.Attribute;
+import controller.Game;
 import enums.EInterfaces;
 import view.Cli;
 
@@ -9,9 +10,8 @@ public class Main {
     public static void main(String args[]){
         if (validArgs(args)){
             Enum userChoice = getInterface(args[0].toUpperCase());
-            if (userChoice.name().equals("CLI")){
-                Cli usrInter = new Cli();
-            }
+            Game game = new Game();
+            game.initGame((EInterfaces) userChoice);
         }
     }
 
