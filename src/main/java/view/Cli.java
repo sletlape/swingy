@@ -1,13 +1,14 @@
 package view;
 
-import controller.CLIMainController;
+public class Cli{
 
-public class Cli implements UserInterface{
-    public Cli(){
-        new CLIMainController("manny","ang",0);
+    public void displayWelcomeMessage() {
+        System.out.println("Welcome to swingy man");
     }
 
-    public void updateSize() {
-
+    public void promptUserAction() {
+        System.out.println("What do you want to do?");
     }
+
+    public void displayGoodMessage() { System.out.println("Bye"); }
 }

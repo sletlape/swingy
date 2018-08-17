@@ -1,17 +1,13 @@
-import com.sun.tools.javac.code.Attribute;
-import controller.Game;
+import controller.GameController;
 import enums.EInterfaces;
-import view.Cli;
-
-import java.util.*;
 
 public class Main {
 
     public static void main(String args[]){
         if (validArgs(args)){
-            Enum userChoice = getInterface(args[0].toUpperCase());
-            Game game = new Game();
-            game.initGame((EInterfaces) userChoice);
+            EInterfaces userChoice = getInterface(args[0].toUpperCase());
+            GameController gameController = new GameController();
+            gameController.initGame(userChoice);
         }
     }
 
