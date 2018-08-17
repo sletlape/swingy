@@ -1,4 +1,4 @@
-package model;
+package model.LivingElements;
 
 public abstract class LiveEntity {
     public String name;

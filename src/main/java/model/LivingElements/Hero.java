@@ -1,4 +1,4 @@
-package model;
+package model.LivingElements;
 
 public class Hero extends LiveEntity{
 
