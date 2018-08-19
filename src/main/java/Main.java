@@ -1,4 +1,4 @@
-import controller.GameController;
+import controller.Interfacing.GameController;
 import enums.EInterfaces;
 
 public class Main {

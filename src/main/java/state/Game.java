@@ -9,7 +9,7 @@ public class Game {
     @Getter @Setter
     private boolean isGameOver = false;
 
-        public static Game getInstance() {
+    public static Game getInstance() {
         return ourInstance;
     }
 

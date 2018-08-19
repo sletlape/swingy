@@ -1,11 +1,12 @@
-package controller;
+package controller.Interfacing;
 
+import controller.Entity.playerConfigController;
 import view.Cli;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class CLIMainController extends AbstractInterfaceController{
+public class CLIController extends AbstractInterfaceController{
     Cli  userInterface = new Cli();
 
     Scanner scanner = new Scanner(System.in);
@@ -31,11 +32,25 @@ public class CLIMainController extends AbstractInterfaceController{
            case  "q" :
                quitGame();
                break;
+            case "p" :
+                playGame();
+                return true;
            case "x" :
                switchUI();
                return true;
         }
         return false;
+    }
+
+    private void playGame() {
+        userInterface.userName();
+        String username = scanner.nextLine();
+        System.out.println("Hello "+username);
+
+
+        String charType = scanner.nextLine();
+
+        playerConfigController player = new playerConfigController(username, charType);
     }
 
     @Override

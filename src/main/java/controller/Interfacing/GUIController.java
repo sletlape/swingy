@@ -1,4 +1,4 @@
-package controller;
+package controller.Interfacing;
 
 import view.Gui;
 
