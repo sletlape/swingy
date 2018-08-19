@@ -12,6 +12,11 @@ public class CLIController extends AbstractInterfaceController{
     Scanner scanner = new Scanner(System.in);
 
     @Override
+    public void start() {
+        run();
+    }
+
+    @Override
     void run() {
         userInterface.displayWelcomeMessage();
         waitForEnterPress();
