@@ -1,6 +1,13 @@
 package model.LivingElements;
 
+import enums.EHeroClasses;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class Hero extends LiveEntity{
+
+    EHeroClasses heroClass;
 
     public Hero(){
 
