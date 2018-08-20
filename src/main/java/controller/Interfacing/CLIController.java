@@ -1,6 +1,6 @@
 package controller.Interfacing;
 
-import controller.Entity.playerConfigController;
+import controller.Entity.playerController;
 import view.Cli;
 
 import java.io.IOException;
@@ -48,14 +48,36 @@ public class CLIController extends AbstractInterfaceController{
     }
 
     private void playGame() {
+
         userInterface.userName();
         String username = scanner.nextLine();
-        System.out.println("Hello "+username);
+        userInterface.greating(username);
 
+        String avatarType = gettingAvatarChoice();
+        System.out.println("Hello "+username+" "+avatarType);
 
-        String charType = scanner.nextLine();
+        playerController player = new playerController(username, avatarType);
+    }
 
-        playerConfigController player = new playerConfigController(username, charType);
+    private String gettingAvatarChoice() {
+        boolean choiceMade = false;
+
+        String charType = "";
+        while (!choiceMade) {
+            charType = scanner.nextLine();
+            if (charType == "1") {
+                charType = "Lincoln";
+                choiceMade = true;
+            } else if (charType == "2") {
+                charType = "Michael";
+                choiceMade = true;
+            } else if (charType == "3") {
+                charType = "Fernando";
+                choiceMade = true;
+            } else
+                System.out.println("Choice is not recognised, please try again.");
+        }
+        return charType;
     }
 
     @Override

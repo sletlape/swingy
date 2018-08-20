@@ -1,6 +1,5 @@
 package controller.Interfacing;
 
-import com.sun.tools.internal.xjc.reader.gbind.Graph;
 import view.Gui;
 
 import java.awt.*;
@@ -50,22 +49,22 @@ public class GUIController extends AbstractInterfaceController implements Runnab
     private void updateGui() {
     }
 
-    private void renderGui() {
-        bs = userInterface.getCanvas().getBufferStrategy();
-        if (bs == null){
-            userInterface.getCanvas().createBufferStrategy(3);
-            return;
-        }
-        g = bs.getDrawGraphics();
-
-        //Clear screen
-        g.clearRect(0,0, width, height);
-        //Draw here
-        g.drawRect(10, 50, 50, 70);
-        //End draw
-        bs.show();
-        g.dispose();
-    }
+//    private void renderGui() {
+//        bs = userInterface.getCanvas().getBufferStrategy();
+//        if (bs == null){
+//            userInterface.getCanvas().createBufferStrategy(3);
+//            return;
+//        }
+//        g = bs.getDrawGraphics();
+//
+//        //Clear screen
+//        g.clearRect(0,0, width, height);
+//        //Draw here
+//        g.drawRect(10, 50, 50, 70);
+//        //End draw
+//        bs.show();
+//        g.dispose();
+//    }
 
     @Override
     public void run() {
@@ -74,7 +73,7 @@ public class GUIController extends AbstractInterfaceController implements Runnab
         //game loop
         while (running){
             updateGui();
-            renderGui();
+            //renderGui();
         }
     }
 

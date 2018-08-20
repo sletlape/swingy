@@ -12,15 +12,14 @@ public class Gui {
     private JFrame frame;
     private Canvas canvas;
 
-    private String title = "Swingy";
     private int size = 300;
 
     public  Gui(){
-        createDisplay();
+        drawGui();
     }
 
-    private void createDisplay() {
-        frame = new JFrame(title);
+    private void drawGui() {
+        frame = new JFrame("Swingy");
         frame.setSize(size, size);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

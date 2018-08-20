@@ -19,4 +19,11 @@ public class Cli{
     }
 
     public void displayGoodMessage() { System.out.println("Bye"); }
+
+    public void greating(String username) {
+        System.out.println("Hello "+username+", please select your avatar:");
+        System.out.println("[1] \t Lincoln");
+        System.out.println("[2] \t Michael");
+        System.out.println("[3] \t Fernando");
+    }
 }
