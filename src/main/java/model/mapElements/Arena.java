@@ -1,10 +1,20 @@
 package model.mapElements;
 
-public class Arena {
+import lombok.Getter;
+import lombok.Setter;
+import model.LivingElements.Hero;
+import model.LivingElements.Villan;
 
-    int size;
-    int level;
-    int nbEnemies;
-    int heroPositionX;
-    int getHeroPositionY;
+import java.util.ArrayList;
+
+@Setter @Getter
+public class Arena {
+    WorldMap worldMap;
+    ArrayList<Villan> villans;
+    Hero hero;
+
+    public Arena(WorldMap worldMap, ArrayList<Villan> villans) {
+        this.worldMap = worldMap;
+        this.villans = villans;
+    }
 }

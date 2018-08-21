@@ -3,23 +3,22 @@ package model.LivingElements;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.awt.*;
+
 @Getter @Setter
 
 public abstract class LiveEntity {
     protected String name;
- //   protected String attack;
     protected int hp;
     protected int xp;
+    protected int level;
+    protected Point point;
 
-    public abstract void    setName(String name);
-
-    public abstract String  getName();
-
-    public abstract void    setHp(int hp);
-
-    public abstract int     getHp();
-
-    public abstract void     setXp(int xp);
-
-    public abstract int     getXp(int xp);
+    public LiveEntity(String name, int hp, int xp, int level) {
+        this.name = name;
+        this.hp = hp;
+        this.xp = xp;
+        this.level = level;
+        this.point = new Point();
+    }
 }

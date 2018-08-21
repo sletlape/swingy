@@ -1,32 +1,38 @@
 package controller.Interfacing;
 
-import controller.Entity.playerController;
+import controller.Entity.ArenaController;
+import enums.EDirection;
+import enums.EHeroClasses;
 import view.Cli;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class CLIController extends AbstractInterfaceController{
-    Cli  userInterface = new Cli();
+
+    Cli userInterface = new Cli();
 
     Scanner scanner = new Scanner(System.in);
 
-    @Override
-    public void start() {
-        run();
+    public CLIController(ArenaController arenaController) {
+        super(arenaController);
     }
+
+
+
 
     @Override
     void run() {
         userInterface.displayWelcomeMessage();
         waitForEnterPress();
+        prePlayInitialisation();
         gameLoop();
     }
 
     private void gameLoop() {
         String input;
         do {
-            userInterface.promptUserAction();
+            userInterface.updateInterface(arenaController.getArena());
             input = scannerGetInput();
         } while (!evaluate(input));
     }
@@ -34,11 +40,26 @@ public class CLIController extends AbstractInterfaceController{
     private boolean evaluate(String input) {
         switch (input)
         {
+            case  "s" :
+                move(EDirection.DOWN);
+                break;
+            case  "d" :
+                move(EDirection.RIGHT);
+                break;
+            case  "a" :
+                move(EDirection.LEFT);
+                break;
+            case  "w" :
+                move(EDirection.UP);
+                break;
            case  "q" :
                quitGame();
                break;
-            case "p" :
-                playGame();
+            case "b" :
+//                fightVillan();
+                return true;
+            case "r" :
+//                runFromVillan();
                 return true;
            case "x" :
                switchUI();
@@ -47,44 +68,46 @@ public class CLIController extends AbstractInterfaceController{
         return false;
     }
 
-    private void playGame() {
-
+    private void prePlayInitialisation() {
         userInterface.userName();
         String username = scanner.nextLine();
         userInterface.greating(username);
 
-        String avatarType = gettingAvatarChoice();
+        EHeroClasses avatarType = gettingAvatarChoice();
         System.out.println("Hello "+username+" "+avatarType);
-
-        playerController player = new playerController(username, avatarType);
+        createHero(avatarType);
     }
 
-    private String gettingAvatarChoice() {
+    private EHeroClasses gettingAvatarChoice() {
         boolean choiceMade = false;
 
-        String charType = "";
+        String charType;
         while (!choiceMade) {
-            charType = scanner.nextLine();
-            if (charType == "1") {
-                charType = "Lincoln";
-                choiceMade = true;
-            } else if (charType == "2") {
-                charType = "Michael";
-                choiceMade = true;
-            } else if (charType == "3") {
-                charType = "Fernando";
-                choiceMade = true;
-            } else
-                System.out.println("Choice is not recognised, please try again.");
+            charType = scannerGetInput();
+            switch (charType){
+                case "1":
+                    return EHeroClasses.Lincoln;
+                case "2":
+                    return EHeroClasses.Michael;
+                case "3":
+                    return EHeroClasses.Fernando;
+                default:
+                        userInterface.displayInvalidCharacterType();
+            }
         }
-        return charType;
+        return null;
     }
 
     @Override
     void switchUI() {
         AbstractInterfaceController controller =
-                new GUIController();
+                new GUIController(arenaController);
         controller.run();
+    }
+
+    @Override
+    void updateUserInterface() {
+        userInterface.updateInterface(arenaController.getArena());
     }
 
     private void quitGame() {

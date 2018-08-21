@@ -1,5 +1,8 @@
 package view;
 
+import model.mapElements.Arena;
+
 public interface UserInterface {
-    public void updateSize();
+
+    void updateInterface(Arena arena);
 }

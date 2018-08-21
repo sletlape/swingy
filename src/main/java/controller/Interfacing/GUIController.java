@@ -1,85 +1,59 @@
 package controller.Interfacing;
 
-import view.Gui;
+import controller.Entity.ArenaController;
+import model.mapElements.WorldMap;
+import view.gui.Gui;
+import view.gui.IWindowPanel;
+import view.gui.MenuPanel;
+import view.gui.WorldPanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class GUIController extends AbstractInterfaceController implements Runnable {
+public  class GUIController extends AbstractInterfaceController {
 
-    public int width, height;
-    private Gui userInterface;
+    Gui userInterface;
 
-    private Thread thread;
-    private boolean running = false;
-
-    private BufferStrategy bs;
-    private Graphics g;
-
-    //video calls this Game
-    GUIController(){
-        this.width = 800;
-        this.height = 600;
+    public GUIController(ArenaController arenaController) {
+        super(arenaController);
     }
-
-    public synchronized void start(){
-        if (running)
-            return;
-        running = true;
-        thread = new Thread(this);
-        thread.start();
-    }
-
-    public synchronized void stop(){
-        if (!running)
-            return;
-        running = false;
-        try {
-            thread.join();
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-    }
-
-
-    private void guiInit() {
-        userInterface  = new Gui();
-    }
-
-    private void updateGui() {
-    }
-
-//    private void renderGui() {
-//        bs = userInterface.getCanvas().getBufferStrategy();
-//        if (bs == null){
-//            userInterface.getCanvas().createBufferStrategy(3);
-//            return;
-//        }
-//        g = bs.getDrawGraphics();
-//
-//        //Clear screen
-//        g.clearRect(0,0, width, height);
-//        //Draw here
-//        g.drawRect(10, 50, 50, 70);
-//        //End draw
-//        bs.show();
-//        g.dispose();
-//    }
 
     @Override
-    public void run() {
-        //initializes graphics
-        guiInit();
-        //game loop
-        while (running){
-            updateGui();
-            //renderGui();
-        }
+    void run() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                userInterface = new Gui();
+                showMenu();
+            }
+        });
+    }
+
+    private void showMenu() {
+        MenuPanel menuPanel = new MenuPanel();
+        MenuController menuController = new MenuController(this, menuPanel);
+        switchPanel(menuPanel);
+    }
+
+    private void switchPanel(IWindowPanel windowPanel) {
+        userInterface.switchPanel(windowPanel);
+    }
+
+    @Override
+    void switchUI() {
+
+    }
+
+    @Override
+    void updateUserInterface() {
+        userInterface.updateInterface(arenaController.getArena());
     }
 
 
-
-    @Override
-    void switchUI() {}
-
+    public void showWorldPanel() {
+        WorldPanel worldPanel = new WorldPanel(arenaController.getArena());
+        WorldPanelController menuController = new WorldPanelController(this, worldPanel);
+        switchPanel(worldPanel);
+    }
 }
