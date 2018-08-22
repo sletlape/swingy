@@ -46,7 +46,7 @@ public class ArenaController {
         mapController.removeObject(arena.getHero().getPoint());
 
         if (isColliding(newPoint)){
-
+            //checking if there is a collision
         }
 
         arena.getHero().setPoint(newPoint);
