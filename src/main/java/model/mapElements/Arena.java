@@ -12,6 +12,8 @@ public class Arena {
     WorldMap worldMap;
     ArrayList<Villain> villains;
     Hero hero;
+    boolean isInFight = false;
+    boolean isGameOver = false;
 
     public Arena(WorldMap worldMap, ArrayList<Villain> villains) {
         this.worldMap = worldMap;

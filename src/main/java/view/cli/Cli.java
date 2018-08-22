@@ -15,18 +15,25 @@ public class Cli implements UserInterface {
         System.out.println("Welcome to swingy-prison break!");
         System.out.println("Press enter to continue!");
     }
-    public void prompUserAction() {
-        System.out.println("=================================");
-        System.out.println("||To switch to GUI, press \"x\"||");
-        System.out.println("||To exit the game, press \"q\"||");
-        System.out.println("||To play the game, press \"p\"||");
-        System.out.println("=================================");
-        System.out.println("=================================");
-        System.out.println("||To move up, press \"w\"||");
-        System.out.println("||To move Down, press \"s\"||");
-        System.out.println("||To move Left, press \"a\"||");
-        System.out.println("||To move Right, press \"f\"||");
-        System.out.println("=================================");
+    public void prompUserAction(boolean fightPrompt) {
+//        System.out.println("=================================");
+//        System.out.println("||To switch to GUI, press \"x\"||");
+//        System.out.println("||To exit the game, press \"q\"||");
+//        System.out.println("||To play the game, press \"p\"||");
+//        System.out.println("=================================");
+
+        if (!fightPrompt) {
+            System.out.println("=================================");
+            System.out.println("||To move up, press \"w\"||");
+            System.out.println("||To move Down, press \"s\"||");
+            System.out.println("||To move Left, press \"a\"||");
+            System.out.println("||To move Right, press \"f\"||");
+            System.out.println("=================================");
+        }
+        else {
+            System.out.println("[1] \t Fight");
+            System.out.println("[2] \t Run");
+        }
         System.out.println("What do you want to do?");
         System.out.println("=================================");
     }
@@ -71,7 +78,7 @@ public class Cli implements UserInterface {
 
     @Override
     public void updateInterface(Arena arena) {
+        prompUserAction(arena.isInFight());
         displayMap(arena.getWorldMap());
-        prompUserAction();
     }
 }

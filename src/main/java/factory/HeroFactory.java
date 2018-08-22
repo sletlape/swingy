@@ -11,18 +11,27 @@ public class HeroFactory {
                 hero = newLincoln();
                 break;
             case Michael:
+                hero = newMichael();
                 break;
             case Fernando:
+                hero = newFernando();
                 break;
         }
         return hero;
     }
 
     private static Hero newLincoln() {
-        int xp = 10;
-        int level = 1;
-        int hp = 1;
         String heroClass = "Lincoln";
-        return new Hero(heroClass, hp, xp, level);
+        return new Hero(heroClass, EHeroClass.Lincoln);
+    }
+
+    private static Hero newMichael() {
+        String heroClass = "Michael";
+        return new Hero(heroClass, EHeroClass.Michael);
+    }
+
+    private static Hero newFernando() {
+        String heroClass = "Fernando";
+        return new Hero(heroClass, EHeroClass.Fernando);
     }
 }

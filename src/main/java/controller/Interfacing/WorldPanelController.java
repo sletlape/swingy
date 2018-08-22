@@ -19,7 +19,7 @@ public class WorldPanelController {
     }
 
     private void addAllListeners() {
-      //  worldPanel.addOnUpListener(onUpListener);
+        worldPanel.addOnUpListener(onUpListener);
         worldPanel.addOnDownListener(onDownListener);
         worldPanel.addOnLeftListener(onLeftListener);
         worldPanel.addOnRightListener(onRightListener);

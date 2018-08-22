@@ -2,7 +2,6 @@ package controller.Entity;
 
 import factory.VillainFactory;
 import model.LivingElements.LiveEntity;
-import model.LivingElements.Villain;
 import model.mapElements.WorldMap;
 import utils.Formulas;
 
@@ -41,5 +40,9 @@ public class MapController {
 
     public boolean containsEnemy(Point newPoint) {
         return map.get(newPoint) != null;
+    }
+
+    public LiveEntity getObject(Point heroPoint) {
+        return map.get(heroPoint);
     }
 }

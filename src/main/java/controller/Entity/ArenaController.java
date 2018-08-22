@@ -1,13 +1,12 @@
 package controller.Entity;
 
+import controller.Battle;
 import enums.EDirection;
 import enums.EHeroClass;
-import enums.EVillainClass;
 import factory.HeroFactory;
-import factory.VillainFactory;
 import lombok.Getter;
 import model.LivingElements.Hero;
-import model.LivingElements.Villain;
+import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
 
 import java.awt.*;
@@ -17,7 +16,7 @@ public class ArenaController {
     Arena arena;
     PlayerController playerController = new PlayerController();
     MapController mapController = new MapController();
-
+    Battle battle = new Battle();
     public ArenaController(Arena arena) {
         this.arena = arena;
     }
@@ -28,6 +27,7 @@ public class ArenaController {
 
         if (isWithinBoundaries(direction))
         {
+            Point runToPoint = arena.getHero().getPoint();
             switch (direction) {
                 case UP:
                     newPoint.y--;
@@ -44,13 +44,12 @@ public class ArenaController {
             }
         }
         mapController.removeObject(arena.getHero().getPoint());
-
-        if (isColliding(newPoint)){
-            //checking if there is a collision
-        }
-
         arena.getHero().setPoint(newPoint);
-        mapController.addObject(arena.getHero());
+
+        if (isColliding(newPoint))
+            arena.setInFight(true);
+        else
+            mapController.addObject(arena.getHero());
     }
 
     private boolean isColliding(Point newPoint) {
@@ -80,6 +79,20 @@ public class ArenaController {
         playerController.registerHero(hero);
         mapController.initializeMap(arena.getWorldMap(), hero.getLevel());
         mapController.addObject(hero);
+    }
 
+    public void fight() {
+        if (this.arena.isInFight()){
+            Point heroPoint = arena.getHero().getPoint();
+            LiveEntity  villain = mapController.getObject(heroPoint);
+            LiveEntity winner = battle.fight(arena.getHero(), villain);
+
+            if (winner == arena.getHero()) {
+                mapController.addObject(winner);
+                arena.setInFight(false);
+            }
+            else
+                arena.setGameOver(true);
+        }
     }
 }

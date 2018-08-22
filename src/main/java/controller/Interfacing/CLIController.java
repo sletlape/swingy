@@ -31,13 +31,14 @@ public class CLIController extends AbstractInterfaceController{
 
     private void gameLoop() {
         String input;
+        updateUserInterface();
         do {
-            userInterface.updateInterface(arenaController.getArena());
             input = scannerGetInput();
-        } while (!evaluate(input));
+        } while (!evaluate(input) && !arenaController.getArena().isGameOver());
     }
 
     private boolean evaluate(String input) {
+        input = input.toLowerCase();
         switch (input)
         {
             case  "s" :
@@ -55,12 +56,12 @@ public class CLIController extends AbstractInterfaceController{
            case  "q" :
                quitGame();
                break;
-            case "b" :
-//                fightVillan();
-                return true;
-            case "r" :
-//                runFromVillan();
-                return true;
+            case "1" :
+                fightVillan();
+                break;
+            case "2" :
+                runFromVillan();
+                break;
            case "x" :
                switchUI();
                return true;
@@ -116,7 +117,10 @@ public class CLIController extends AbstractInterfaceController{
     }
 
     private String scannerGetInput() {
-        return scanner.nextLine();
+        if (scanner.hasNextLine())
+            return scanner.nextLine();
+        else
+            return "";
     }
 
     private void waitForEnterPress() {
