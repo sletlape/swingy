@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @Getter @Setter
-public class WorldMap {
+public class    WorldMap {
 
     HashMap<Point, LiveEntity> map;
     int size;

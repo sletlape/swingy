@@ -1,6 +1,8 @@
 package controller.Entity;
 
+import factory.VillainFactory;
 import model.LivingElements.LiveEntity;
+import model.LivingElements.Villain;
 import model.mapElements.WorldMap;
 import utils.Formulas;
 
@@ -20,6 +22,13 @@ public class MapController {
 
         int mapSize = Formulas.getMapSize(heroLevel);
         worldMap.setSize(mapSize);
+        ArrayList<LiveEntity> randomVillian = VillainFactory.randomVillain(mapSize);
+        addObjects(randomVillian);
+    }
+
+    private void addObjects(ArrayList<LiveEntity> objects) {
+        for (LiveEntity liveEntity : objects)
+            addObject(liveEntity);
     }
 
     public void addObject(LiveEntity entity) {
@@ -28,5 +37,9 @@ public class MapController {
 
     public void removeObject(Point point) {
         map.remove(point);
+    }
+
+    public boolean containsEnemy(Point newPoint) {
+        return map.get(newPoint) != null;
     }
 }

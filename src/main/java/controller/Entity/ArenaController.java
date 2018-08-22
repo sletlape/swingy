@@ -2,9 +2,12 @@ package controller.Entity;
 
 import enums.EDirection;
 import enums.EHeroClass;
+import enums.EVillainClass;
 import factory.HeroFactory;
+import factory.VillainFactory;
 import lombok.Getter;
 import model.LivingElements.Hero;
+import model.LivingElements.Villain;
 import model.mapElements.Arena;
 
 import java.awt.*;
@@ -40,10 +43,18 @@ public class ArenaController {
                     break;
             }
         }
-
         mapController.removeObject(arena.getHero().getPoint());
+
+        if (isColliding(newPoint)){
+
+        }
+
         arena.getHero().setPoint(newPoint);
         mapController.addObject(arena.getHero());
+    }
+
+    private boolean isColliding(Point newPoint) {
+        return mapController.containsEnemy(newPoint);
     }
 
     private boolean isWithinBoundaries(EDirection direction) {
@@ -69,7 +80,6 @@ public class ArenaController {
         playerController.registerHero(hero);
         mapController.initializeMap(arena.getWorldMap(), hero.getLevel());
         mapController.addObject(hero);
+
     }
-
-
 }

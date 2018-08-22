@@ -9,7 +9,6 @@ public class Hero extends LiveEntity{
 
     EHeroClass heroClass;
 
-
     public Hero(String name, int hp, int xp, int level) {
         super(name, hp, xp, level);
     }

@@ -3,7 +3,7 @@ package controller.Interfacing;
 import controller.Entity.ArenaController;
 import enums.EDirection;
 import enums.EHeroClass;
-import view.Cli;
+import view.cli.Cli;
 
 import java.io.IOException;
 import java.util.Scanner;

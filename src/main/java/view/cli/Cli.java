@@ -1,14 +1,15 @@
-package view;
+package view.cli;
 
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.LivingElements.Villain;
 import model.mapElements.Arena;
 import model.mapElements.WorldMap;
+import view.UserInterface;
 
 import java.awt.*;
 
-public class Cli implements UserInterface{
+public class Cli implements UserInterface {
 
     public void displayWelcomeMessage() {
         System.out.println("Welcome to swingy-prison break!");
