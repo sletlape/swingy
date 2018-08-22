@@ -2,7 +2,7 @@ package view.gui;
 
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
-import model.LivingElements.Villan;
+import model.LivingElements.Villain;
 import model.mapElements.WorldMap;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class MapPanel extends JPanel {
                     mapCell.setValues("");
                 else if (player instanceof Hero)
                     mapCell.setValues("H");
-                else if (player instanceof Villan)
+                else if (player instanceof Villain)
                     mapCell.setValues("V");
             }
         }

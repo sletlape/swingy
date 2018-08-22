@@ -2,7 +2,7 @@ package controller.Interfacing;
 
 import controller.Entity.ArenaController;
 import enums.EDirection;
-import enums.EHeroClasses;
+import enums.EHeroClass;
 import view.Cli;
 
 import java.io.IOException;
@@ -73,12 +73,12 @@ public class CLIController extends AbstractInterfaceController{
         String username = scanner.nextLine();
         userInterface.greating(username);
 
-        EHeroClasses avatarType = gettingAvatarChoice();
+        EHeroClass avatarType = gettingAvatarChoice();
         System.out.println("Hello "+username+" "+avatarType);
         createHero(avatarType);
     }
 
-    private EHeroClasses gettingAvatarChoice() {
+    private EHeroClass gettingAvatarChoice() {
         boolean choiceMade = false;
 
         String charType;
@@ -86,11 +86,11 @@ public class CLIController extends AbstractInterfaceController{
             charType = scannerGetInput();
             switch (charType){
                 case "1":
-                    return EHeroClasses.Lincoln;
+                    return EHeroClass.Lincoln;
                 case "2":
-                    return EHeroClasses.Michael;
+                    return EHeroClass.Michael;
                 case "3":
-                    return EHeroClasses.Fernando;
+                    return EHeroClass.Fernando;
                 default:
                         userInterface.displayInvalidCharacterType();
             }

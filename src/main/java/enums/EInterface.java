@@ -1,6 +1,6 @@
 package enums;
 
-public enum EInterfaces {
+public enum EInterface {
     GUI,
     CLI
 }

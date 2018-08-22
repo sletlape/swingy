@@ -3,18 +3,18 @@ package model.mapElements;
 import lombok.Getter;
 import lombok.Setter;
 import model.LivingElements.Hero;
-import model.LivingElements.Villan;
+import model.LivingElements.Villain;
 
 import java.util.ArrayList;
 
 @Setter @Getter
 public class Arena {
     WorldMap worldMap;
-    ArrayList<Villan> villans;
+    ArrayList<Villain> villains;
     Hero hero;
 
-    public Arena(WorldMap worldMap, ArrayList<Villan> villans) {
+    public Arena(WorldMap worldMap, ArrayList<Villain> villains) {
         this.worldMap = worldMap;
-        this.villans = villans;
+        this.villains = villains;
     }
 }

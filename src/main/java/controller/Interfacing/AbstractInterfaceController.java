@@ -2,9 +2,7 @@ package controller.Interfacing;
 
 import controller.Entity.ArenaController;
 import enums.EDirection;
-import enums.EHeroClasses;
-import model.mapElements.Arena;
-import view.UserInterface;
+import enums.EHeroClass;
 
 public abstract class AbstractInterfaceController {
     ArenaController arenaController;
@@ -15,7 +13,7 @@ public abstract class AbstractInterfaceController {
 
     }
 
-    public void createHero(EHeroClasses heroClass) {
+    public void createHero(EHeroClass heroClass) {
         arenaController.createHero(heroClass);
     }
 

@@ -1,10 +1,10 @@
 package factory;
 
-import enums.EHeroClasses;
+import enums.EHeroClass;
 import model.LivingElements.Hero;
 
 public class HeroFactory {
-    public static Hero newHero(EHeroClasses heroClass) {
+    public static Hero newHero(EHeroClass heroClass) {
         Hero hero = null;
         switch (heroClass) {
             case Lincoln:

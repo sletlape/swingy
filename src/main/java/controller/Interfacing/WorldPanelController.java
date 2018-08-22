@@ -1,8 +1,6 @@
 package controller.Interfacing;
 
 import enums.EDirection;
-import enums.EHeroClasses;
-import model.mapElements.WorldMap;
 import view.gui.WorldPanel;
 
 import javax.swing.*;

@@ -2,7 +2,7 @@ package view;
 
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
-import model.LivingElements.Villan;
+import model.LivingElements.Villain;
 import model.mapElements.Arena;
 import model.mapElements.WorldMap;
 
@@ -43,7 +43,7 @@ public class Cli implements UserInterface{
                     System.out.print("[ ]");
                 else if (player instanceof Hero)
                     System.out.print("[H]");
-                else if (player instanceof Villan)
+                else if (player instanceof Villain)
                     System.out.print("[V]");
 
             }

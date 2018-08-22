@@ -1,13 +1,13 @@
 package model.LivingElements;
 
-import enums.EHeroClasses;
+import enums.EHeroClass;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
 public class Hero extends LiveEntity{
 
-    EHeroClasses heroClass;
+    EHeroClass heroClass;
 
 
     public Hero(String name, int hp, int xp, int level) {

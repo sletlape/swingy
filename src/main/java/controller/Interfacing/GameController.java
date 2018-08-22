@@ -1,16 +1,16 @@
 package controller.Interfacing;
 
 import controller.Entity.ArenaController;
-import enums.EInterfaces;
+import enums.EInterface;
 import factory.ArenaControllerFactory;
 
 public class GameController {
 
-    public void initGame(EInterfaces userInterface){
+    public void initGame(EInterface userInterface){
 
         ArenaController arenaController = ArenaControllerFactory.newArenaFromTheGameState();
 
-        AbstractInterfaceController controller = userInterface == EInterfaces.CLI ?
+        AbstractInterfaceController controller = userInterface == EInterface.CLI ?
                 new CLIController(arenaController) : new GUIController(arenaController);
         controller.run();
     }

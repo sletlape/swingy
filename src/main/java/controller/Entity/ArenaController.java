@@ -1,7 +1,7 @@
 package controller.Entity;
 
 import enums.EDirection;
-import enums.EHeroClasses;
+import enums.EHeroClass;
 import factory.HeroFactory;
 import lombok.Getter;
 import model.LivingElements.Hero;
@@ -61,7 +61,7 @@ public class ArenaController {
         }
     }
 
-    public void createHero(EHeroClasses heroClass) {
+    public void createHero(EHeroClass heroClass) {
         Hero hero = HeroFactory.newHero(heroClass);
 
         arena.setHero(hero);

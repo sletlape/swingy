@@ -1,6 +1,6 @@
 package enums;
 
-public enum EHeroClasses {
+public enum EHeroClass {
     Lincoln,
     Michael,
     Fernando
