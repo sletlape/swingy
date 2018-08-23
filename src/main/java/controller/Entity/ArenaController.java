@@ -28,7 +28,7 @@ public class ArenaController {
 
         if (isWithinBoundaries(direction))
         {
-            Point runToPoint = arena.getHero().getPoint();
+            //Point runToPoint = arena.getHero().getPoint();
             switch (direction) {
                 case UP:
                     newPoint.y--;
@@ -90,7 +90,9 @@ public class ArenaController {
 
             if (winner == arena.getHero()) {
                 mapController.addObject(winner);
+                arena.getHero().setXp(arena.getHero().getXp()+(10*arena.getHero().getLevel()));
                 arena.setInFight(false);
+                playerController.levelUp();
             }
             else
                 arena.setGameOver(true);

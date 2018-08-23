@@ -39,8 +39,9 @@ public class Cli implements UserInterface {
     }
 
 
-    private void displayMap(WorldMap worldMap) {
+    private void displayMap(Arena arena) {
         Point point = new Point();
+        WorldMap worldMap = arena.getWorldMap();
 
         for (int y = 0; y < worldMap.getSize(); y++) {
             for (int x = 0; x < worldMap.getSize(); x++) {
@@ -49,6 +50,8 @@ public class Cli implements UserInterface {
                 LiveEntity player = worldMap.getMap().get(point);
                 if (player == null)
                     System.out.print("[ ]");
+                else if(player instanceof  Villain && player.getPoint().equals(arena.getHero().getPoint()) )
+                    System.out.print("[*]");
                 else if (player instanceof Hero)
                     System.out.print("[H]");
                 else if (player instanceof Villain)
@@ -79,6 +82,6 @@ public class Cli implements UserInterface {
     @Override
     public void updateInterface(Arena arena) {
         prompUserAction(arena.isInFight());
-        displayMap(arena.getWorldMap());
+        displayMap(arena);
     }
 }

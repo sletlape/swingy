@@ -8,7 +8,7 @@ public class Battle {
     public LiveEntity fight(Hero hero, LiveEntity villain) {
         LiveEntity winner;
 
-        if (hero.getXp() > villain.getXp()){
+        if (hero.getXp() > villain.getHp()){
             winner = hero;
         }
         else

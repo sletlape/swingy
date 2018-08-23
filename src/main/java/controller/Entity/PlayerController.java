@@ -9,7 +9,15 @@ import java.awt.*;
 public class PlayerController {
     Hero hero;
 
-    void levelUp(int points) {
+    void levelUp() {
+        //level*1000+(level−1)2*450
+        int level = hero.getLevel();
+        int heroXp = this.hero.getXp();
+
+        if (heroXp <= (level*100+Math.pow(level-1,2)*450)){
+
+            hero.setLevel(level+1);
+        }
     }
 
     void collectAritfact(Artifact artifact) {
