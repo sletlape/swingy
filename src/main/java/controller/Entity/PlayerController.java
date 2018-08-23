@@ -26,4 +26,8 @@ public class PlayerController {
         heroPoint.x = mapSize /2;
         heroPoint.y = mapSize /2;
     }
+
+    public void returnToLastPoint() {
+        hero.setPoint(hero.getLastPoint());
+    }
 }

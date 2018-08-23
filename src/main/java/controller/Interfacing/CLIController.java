@@ -57,10 +57,10 @@ public class CLIController extends AbstractInterfaceController{
                quitGame();
                break;
             case "1" :
-                fightVillan();
+                fightVillain();
                 break;
             case "2" :
-                runFromVillan();
+                runFromVillain();
                 break;
            case "x" :
                switchUI();

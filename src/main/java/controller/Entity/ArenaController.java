@@ -10,6 +10,7 @@ import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
 
 import java.awt.*;
+import java.util.Random;
 
 @Getter
 public class ArenaController {
@@ -23,7 +24,7 @@ public class ArenaController {
 
     public void move(EDirection direction) {
         Point newPoint = new Point(arena.getHero().getPoint());
-
+        arena.getHero().setLastPoint(arena.getHero().getPoint());
 
         if (isWithinBoundaries(direction))
         {
@@ -95,4 +96,24 @@ public class ArenaController {
                 arena.setGameOver(true);
         }
     }
+
+    public void run(){
+        Random rndm = new Random();
+        int success = rndm.nextInt(2);
+
+        if (success == 1){
+            System.out.println("You are running away");
+            backToLastPoint();
+        }else {
+            System.out.println("Cannot run away, you have to fight");
+            ///TODO:
+            //setup fight sequence here
+        }
+    }
+
+    protected void backToLastPoint(){
+        playerController.returnToLastPoint();
+        mapController.addObject(arena.getHero());
+    }
+
 }
