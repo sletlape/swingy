@@ -19,8 +19,6 @@ public class CLIController extends AbstractInterfaceController{
     }
 
 
-
-
     @Override
     void run() {
         userInterface.displayWelcomeMessage();
@@ -38,35 +36,69 @@ public class CLIController extends AbstractInterfaceController{
     }
 
     private boolean evaluate(String input) {
+
         input = input.toLowerCase();
+
+        Boolean validChoice = false;
+
+        if (!arenaController.getArena().isInFight()){
+            validChoice = moveEvaluation(input);
+        }else {
+            validChoice = fightOrFlight(input);
+        }
+
+        if (!validChoice){
+            view.cli.Cli.displayInputError();
+        }
+
+        if (input == "q"){
+            quitGame();
+        }
+
+        if (input == "x"){
+            switchUI();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean fightOrFlight(String input) {
+        boolean validInput = false;
         switch (input)
         {
-            case  "s" :
-                move(EDirection.DOWN);
-                break;
-            case  "d" :
-                move(EDirection.RIGHT);
-                break;
-            case  "a" :
-                move(EDirection.LEFT);
-                break;
-            case  "w" :
-                move(EDirection.UP);
-                break;
-           case  "q" :
-               quitGame();
-               break;
             case "1" :
                 fightVillain();
+                validInput = true;
                 break;
             case "2" :
                 runFromVillain();
+                validInput = true;
                 break;
-           case "x" :
-               switchUI();
-               return true;
         }
-        return false;
+        return validInput;
+    }
+
+    private boolean moveEvaluation(String input) {
+        boolean validInput = false;
+        switch (input){
+            case  "s" :
+                move(EDirection.DOWN);
+                validInput = true;
+                break;
+            case  "d" :
+                move(EDirection.RIGHT);
+                validInput = true;
+                break;
+            case  "a" :
+                move(EDirection.LEFT);
+                validInput = true;
+                break;
+            case  "w" :
+                move(EDirection.UP);
+                validInput = true;
+                break;
+        }
+        return validInput;
     }
 
     private void prePlayInitialisation() {
