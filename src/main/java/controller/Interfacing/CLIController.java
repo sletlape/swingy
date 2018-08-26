@@ -104,7 +104,7 @@ public class CLIController extends AbstractInterfaceController{
     private void prePlayInitialisation() {
         userInterface.userName();
         String username = scanner.nextLine();
-        userInterface.greating(username);
+        userInterface.greeting(username);
 
         EHeroClass avatarType = gettingAvatarChoice();
         System.out.println("Hello "+username+" "+avatarType);
@@ -125,7 +125,7 @@ public class CLIController extends AbstractInterfaceController{
                 case "3":
                     return EHeroClass.Fernando;
                 default:
-                        userInterface.displayInvalidCharacterType();
+                    userInterface.displayInvalidCharacterType();
             }
         }
         return null;
@@ -144,7 +144,7 @@ public class CLIController extends AbstractInterfaceController{
     }
 
     private void quitGame() {
-        userInterface.displayGoodMessage();
+        userInterface.displayGoodByeMessage();
         System.exit(0);
     }
 

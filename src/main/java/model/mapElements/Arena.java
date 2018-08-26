@@ -7,7 +7,8 @@ import model.LivingElements.Villain;
 
 import java.util.ArrayList;
 
-@Setter @Getter
+@Setter
+@Getter
 public class Arena {
     WorldMap worldMap;
     ArrayList<Villain> villains;
@@ -19,5 +20,4 @@ public class Arena {
         this.worldMap = worldMap;
         this.villains = villains;
     }
-
 }

@@ -3,6 +3,7 @@ package view.gui;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.LivingElements.Villain;
+import model.mapElements.Arena;
 import model.mapElements.WorldMap;
 
 import javax.swing.*;
@@ -21,8 +22,9 @@ public class MapPanel extends JPanel {
         }
     }
 
-    public void updateValues(WorldMap worldMap) {
+    public void updateValues(Arena arena) {
         Point point = new Point();
+        WorldMap worldMap = arena.getWorldMap();
         int count = 0;
         for (int y = 0; y < worldMap.getSize(); y++) {
             for (int x = 0; x < worldMap.getSize(); x++) {
@@ -33,6 +35,8 @@ public class MapPanel extends JPanel {
 
                 if (player == null)
                     mapCell.setValues("");
+                else if (player instanceof Villain && player.getPoint().equals(arena.getHero().getPoint()))
+                    mapCell.setValues("*");
                 else if (player instanceof Hero)
                     mapCell.setValues("H");
                 else if (player instanceof Villain)

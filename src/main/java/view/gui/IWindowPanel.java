@@ -6,6 +6,4 @@ import javax.swing.*;
 
 public abstract class IWindowPanel extends JPanel {
     abstract void updatePanel(Arena arena);
-
-
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
+import view.cli.Cli;
 
 import java.awt.*;
 import java.util.Random;
@@ -26,8 +27,7 @@ public class ArenaController {
         Point newPoint = new Point(arena.getHero().getPoint());
         arena.getHero().setLastPoint(arena.getHero().getPoint());
 
-        if (isWithinBoundaries(direction))
-        {
+        if (isWithinBoundaries(direction)) {
             //Point runToPoint = arena.getHero().getPoint();
             switch (direction) {
                 case UP:
@@ -44,6 +44,7 @@ public class ArenaController {
                     break;
             }
         }
+
         mapController.removeObject(arena.getHero().getPoint());
         arena.getHero().setPoint(newPoint);
 
@@ -107,9 +108,9 @@ public class ArenaController {
             System.out.println("You are running away");
             backToLastPoint();
         }else {
+            Cli.displayTooSowForEnemyMsg();
             System.out.println("Cannot run away, you have to fight");
-            ///TODO:
-            //setup fight sequence here
+            fight();
         }
     }
 

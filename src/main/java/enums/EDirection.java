@@ -1,7 +1,5 @@
 package enums;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 public enum  EDirection {
     UP(-1),
     DOWN(1),
