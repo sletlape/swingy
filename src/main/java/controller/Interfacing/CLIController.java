@@ -102,13 +102,19 @@ public class CLIController extends AbstractInterfaceController{
     }
 
     private void prePlayInitialisation() {
-        userInterface.userName();
-        String username = scanner.nextLine();
-        userInterface.greeting(username);
 
+        userInterface.chooseAvaterType();
         EHeroClass avatarType = gettingAvatarChoice();
-        System.out.println("Hello "+username+" "+avatarType);
         createHero(avatarType);
+
+        String username;
+        while (!arenaController.isPlayerValid()) {
+            userInterface.userName();
+            username = scanner.nextLine();
+            setPlayername(username);
+        }
+
+      //  System.out.println("Hello "+username+" "+avatarType);
     }
 
     private EHeroClass gettingAvatarChoice() {

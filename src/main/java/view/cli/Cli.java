@@ -47,6 +47,10 @@ public class Cli implements UserInterface {
 
     public void greeting(String username) {
         System.out.println("Hello " + username + ", please select your avatar:");
+    }
+
+    public void chooseAvaterType(){
+        System.out.println("Please select an avatar type:");
         System.out.println("[1] \t Lincoln");
         System.out.println("[2] \t Michael");
         System.out.println("[3] \t Fernando");

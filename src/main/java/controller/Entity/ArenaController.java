@@ -1,6 +1,7 @@
 package controller.Entity;
 
 import controller.Battle;
+import controller.ValidationControl.PlayerValidation;
 import enums.EDirection;
 import enums.EHeroClass;
 import factory.HeroFactory;
@@ -10,8 +11,10 @@ import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
 import view.cli.Cli;
 
+import javax.validation.ConstraintViolation;
 import java.awt.*;
 import java.util.Random;
+import java.util.Set;
 
 @Getter
 public class ArenaController {
@@ -119,4 +122,21 @@ public class ArenaController {
         mapController.addObject(arena.getHero());
     }
 
+    public boolean isPlayerValid() {
+        return arena.isValidPlayerName();
+    }
+
+    public void setPlayerName(String name) {
+        playerController.setName(name);
+        Set<ConstraintViolation<LiveEntity>> violations = PlayerValidation.validEntity(arena.getHero());
+
+        if (violations.isEmpty())
+            arena.setValidPlayerName(true);
+        else {
+            for (ConstraintViolation<LiveEntity> violation: violations) {
+                System.out.println(violation.getMessage());
+            }
+        }
+
+    }
 }

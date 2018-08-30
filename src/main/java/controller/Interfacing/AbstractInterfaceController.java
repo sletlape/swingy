@@ -16,6 +16,10 @@ public abstract class AbstractInterfaceController {
         arenaController.createHero(heroClass);
     }
 
+    public void setPlayername(String name){
+        arenaController.setPlayerName(name);
+    }
+
     public void move(EDirection direction){
         arenaController.move(direction);
         updateUserInterface();

@@ -6,13 +6,11 @@ import model.LivingElements.LiveEntity;
 public class Battle {
 
     public LiveEntity fight(Hero hero, LiveEntity villain) {
-        LiveEntity winner;
 
         if (hero.getXp() > villain.getHp()){
-            winner = hero;
+            return hero;
         }
         else
-            winner = villain;
-        return winner;
+            return villain;
     }
 }

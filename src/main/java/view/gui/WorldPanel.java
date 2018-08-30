@@ -18,7 +18,7 @@ public class WorldPanel extends IWindowPanel{
 
     @Override
     void updatePanel(Arena arena) {
-        mapPanel.updateValues(arena.getWorldMap());
+        mapPanel.updateValues(arena);
     }
 
     public void addOnUpListener(AbstractAction onUpListener) {
