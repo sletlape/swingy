@@ -102,4 +102,13 @@ public class Cli implements UserInterface {
         displayMap(arena);
         promptUserAction(arena.isInFight());
     }
+
+    @Override
+    public void displayGoodByeWin() {
+        System.out.println("*******************************************************");
+        System.out.println("You have escaped, congratulations you are free to continue with your day.");
+        System.out.println("*******************************************************");
+    }
+
+
 }

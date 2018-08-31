@@ -20,10 +20,14 @@ public class Gui implements UserInterface {
         currentPanel.updatePanel(arena);
     }
 
+    @Override
+    public void displayGoodByeWin() {
+
+    }
+
     public void switchPanel(IWindowPanel panel) {
         currentPanel = panel;
         mainWindow.setContentPane(panel);
         mainWindow.setVisible(true);
     }
-
 }

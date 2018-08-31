@@ -9,6 +9,8 @@ import lombok.Getter;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
+import persistence.ArenaRepository;
+import persistence.IRepository;
 import view.cli.Cli;
 
 import javax.validation.ConstraintViolation;
@@ -22,8 +24,12 @@ public class ArenaController {
     PlayerController playerController = new PlayerController();
     MapController mapController = new MapController();
     Battle battle = new Battle();
+
+    IRepository repository;
+
     public ArenaController(Arena arena) {
         this.arena = arena;
+        repository = new ArenaRepository();
     }
 
     public void move(EDirection direction) {
@@ -46,6 +52,9 @@ public class ArenaController {
                     newPoint.x++;
                     break;
             }
+        }else {
+            repository.update(arena);
+            arena.setGameOver(true);
         }
 
         mapController.removeObject(arena.getHero().getPoint());
@@ -64,15 +73,15 @@ public class ArenaController {
     private boolean isWithinBoundaries(EDirection direction) {
         Point playerPosition = arena.getHero().getPoint();
         int mapSize = arena.getWorldMap().getSize();
-        int newValue;
+        int newPosition;
 
         if (direction == EDirection.UP || direction == EDirection.DOWN) {
-            newValue = playerPosition.y + direction.getIncrement();
-            return newValue >= 0 && newValue < mapSize;
+            newPosition = playerPosition.y + direction.getIncrement();
+            return newPosition >= 0 && newPosition < mapSize;
         }
         else {
-            newValue = playerPosition.x + direction.getIncrement();
-            return newValue >= 0 && newValue < mapSize;
+            newPosition = playerPosition.x + direction.getIncrement();
+            return newPosition >= 0 && newPosition < mapSize;
         }
     }
 
@@ -80,10 +89,10 @@ public class ArenaController {
         Hero hero = HeroFactory.newHero(heroClass);
 
         arena.setHero(hero);
-
         playerController.registerHero(hero);
         mapController.initializeMap(arena.getWorldMap(), hero.getLevel());
         mapController.addObject(hero);
+
     }
 
     public void fight() {
@@ -100,6 +109,7 @@ public class ArenaController {
             }
             else
                 arena.setGameOver(true);
+            repository.update(arena);
         }
     }
 
@@ -109,6 +119,7 @@ public class ArenaController {
 
         if (success == 1){
             System.out.println("You are running away");
+            arena.setInFight(false);
             backToLastPoint();
         }else {
             Cli.displayTooSowForEnemyMsg();
@@ -130,8 +141,10 @@ public class ArenaController {
         playerController.setName(name);
         Set<ConstraintViolation<LiveEntity>> violations = PlayerValidation.validEntity(arena.getHero());
 
-        if (violations.isEmpty())
+        if (violations.isEmpty()) {
             arena.setValidPlayerName(true);
+            repository.create(arena);
+        }
         else {
             for (ConstraintViolation<LiveEntity> violation: violations) {
                 System.out.println(violation.getMessage());

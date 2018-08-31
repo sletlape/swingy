@@ -33,6 +33,7 @@ public class CLIController extends AbstractInterfaceController{
         do {
             input = scannerGetInput();
         } while (!evaluate(input) && !arenaController.getArena().isGameOver());
+        userInterface.displayGoodByeWin();
     }
 
     private boolean evaluate(String input) {
@@ -52,6 +53,7 @@ public class CLIController extends AbstractInterfaceController{
         }
 
         if (input == "q"){
+
             quitGame();
         }
 
@@ -111,7 +113,7 @@ public class CLIController extends AbstractInterfaceController{
         while (!arenaController.isPlayerValid()) {
             userInterface.userName();
             username = scanner.nextLine();
-            setPlayername(username);
+            setPlayerName(username);
         }
 
       //  System.out.println("Hello "+username+" "+avatarType);
