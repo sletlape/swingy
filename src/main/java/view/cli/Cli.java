@@ -11,13 +11,50 @@ import java.awt.*;
 
 public class Cli implements UserInterface {
 
+    public static void battleWonMessage(String villainName) {
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("Congratulations, you have defeated a "+ villainName+
+                ".\n You have gained 25 points");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    }
+
+    public static void displayHeroStats(String heroName, String heroType, int heroXp, int heroHp, int heroLevel) {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Hero name:\t\t"+heroName);
+        System.out.println("Hero class:\t\t" +heroType);
+        System.out.println("Hero xp:\t\t"+heroXp);
+        System.out.println("Hero level:\t\t"+heroLevel);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    }
+
+    public static void battleLostMessage(String villainName) {
+        System.out.println("You have lost to "+villainName);
+    }
+
     public void displayWelcomeMessage() {
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.println("Welcome to swingy-prison break!");
         System.out.println("Press enter to continue!");
     }
 
+    public void greeting(String username) {
+        System.out.println("Hello " + username + ", please select your avatar:");
+    }
+
+    public void chooseAvatarType(){
+        System.out.println("Please select an avatar type:");
+        System.out.println("[1] \t Lincoln");
+        System.out.println("[2] \t Michael");
+        System.out.println("[3] \t Fernando");
+    }
+
+    public void userName() {
+        System.out.println("Please enter a username: ");
+    }
+
     private void promptUserInteraction() {
         System.out.println("=================================");
+        System.out.println("||To view your stats, press \"i\"||");
         System.out.println("||To switch to GUI, press \"x\"||");
         System.out.println("||To exit the game, press \"q\"||");
         System.out.println("=================================");
@@ -45,17 +82,6 @@ public class Cli implements UserInterface {
         System.out.println("Invalid input, please select from the above options!");
     }
 
-    public void greeting(String username) {
-        System.out.println("Hello " + username + ", please select your avatar:");
-    }
-
-    public void chooseAvaterType(){
-        System.out.println("Please select an avatar type:");
-        System.out.println("[1] \t Lincoln");
-        System.out.println("[2] \t Michael");
-        System.out.println("[3] \t Fernando");
-    }
-
     private void displayMap(Arena arena) {
         Point point = new Point();
         WorldMap worldMap = arena.getWorldMap();
@@ -80,12 +106,9 @@ public class Cli implements UserInterface {
         }
     }
 
-    public void userName() {
-        System.out.println("Please enter a username: ");
-    }
-
     public void displayGoodByeMessage() {
         System.out.println("Bye");
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     }
 
     public void displayInvalidCharacterType() {

@@ -1,5 +1,6 @@
 package factory;
 
+import enums.EArtifactClass;
 import enums.EVillainClass;
 import model.LivingElements.LiveEntity;
 import model.LivingElements.Villain;
@@ -29,21 +30,21 @@ public class VillainFactory {
         int xp = 10;
         int hp = 1;
         String VillainClass = "TBag";
-        return new Villain(VillainClass, hp, xp);
+        return new Villain(VillainClass, hp, xp, EArtifactClass.Shank);
     }
 
     private static Villain newMahone() {
         int xp = 10;
         int hp = 1;
         String VillainClass = "Mahone";
-        return new Villain(VillainClass, hp, xp);
+        return new Villain(VillainClass, hp, xp, EArtifactClass.Gun);
     }
 
     private static Villain newBellick() {
         int xp = 10;
         int hp = 1;
         String VillainClass = "Bellick";
-        return new Villain(VillainClass, hp, xp);
+        return new Villain(VillainClass, hp, xp, EArtifactClass.Taser);
     }
 
     public static ArrayList<LiveEntity> randomVillain(int mapSize) {

@@ -1,5 +1,6 @@
 package model.LivingElements;
 
+import enums.EArtifactClass;
 import enums.EHeroClass;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,9 +23,10 @@ public class Hero extends LiveEntity{
     @Transient
     Point lastPoint = null;
 
-    public Hero(String name, EHeroClass heroClass) {
+    public Hero(String name, EHeroClass heroClass, EArtifactClass artifactClass) {
         super(name, 100, 1, 1);
         this.heroClass = heroClass;
+        this.artifactClass = artifactClass;
         this.lastPoint = this.point;
     }
 

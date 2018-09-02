@@ -1,5 +1,6 @@
 package model.LivingElements;
 
+import enums.EArtifactClass;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,13 +17,16 @@ public abstract class LiveEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
- //   @NotBlank(message = "Username cannot be null")
+    @NotBlank(message = "Username cannot be null")
     @Size(min = 3, max = 10, message = "Username should be between 3 and 10 characters long!")
     protected String name;
 
     protected int hp;
     protected int xp;
     protected int level;
+
+    EArtifactClass artifactClass;
+    protected int attackPoints = 0;
 
     @Transient
     protected Point point;
@@ -33,6 +37,18 @@ public abstract class LiveEntity {
         this.xp = xp;
         this.level = level;
         this.point = new Point();
+
+        switch(this.artifactClass){
+            case Gun:
+                this.attackPoints = 50;
+                break;
+            case Taser:
+                this.attackPoints = 30;
+                break;
+            case Shank:
+                this.attackPoints = 15;
+                break;
+        }
     }
 
     protected LiveEntity() {
