@@ -31,6 +31,13 @@ public class Cli implements UserInterface {
         System.out.println("You have lost to "+villainName);
     }
 
+    public static void inFightMessage(String attacker, int attackingPower, String defender, int attackedHealth) {
+        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
+        System.out.println(attacker+" inflicts "+attackingPower+" on "+defender);
+        System.out.println(defender+" now has "+attackedHealth+" HP");
+        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
+    }
+
     public void displayWelcomeMessage() {
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.println("Welcome to swingy-prison break!");

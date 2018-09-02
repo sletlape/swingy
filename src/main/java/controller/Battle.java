@@ -14,9 +14,11 @@ public class Battle {
         while ((hero.getHp() > 0) && (villain.getHp() > 0)){
             if (attacker == 1){
                 villain.setHp(villain.getHp() - hero.getAttackPoints());
+                Cli.inFightMessage(hero.getName(), hero.getAttackPoints(), villain.getName(), villain.getHp());
                 attacker = 2;
             }else{
                 hero.setHp(hero.getHp() - villain.getAttackPoints());
+                Cli.inFightMessage(villain.getName(), villain.getAttackPoints(), hero.getName(), hero.getHp());
                 attacker = 1;
             }
         }
