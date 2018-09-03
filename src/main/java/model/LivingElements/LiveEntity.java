@@ -26,7 +26,6 @@ public abstract class LiveEntity {
     protected int level;
 
     EArtifactClass artifactClass;
-    protected int attackPoints = 0;
 
     @Transient
     protected Point point;
@@ -38,17 +37,6 @@ public abstract class LiveEntity {
         this.level = level;
         this.point = new Point();
 
-        switch(this.artifactClass){
-            case Gun:
-                this.attackPoints = 50;
-                break;
-            case Taser:
-                this.attackPoints = 30;
-                break;
-            case Shank:
-                this.attackPoints = 15;
-                break;
-        }
     }
 
     protected LiveEntity() {

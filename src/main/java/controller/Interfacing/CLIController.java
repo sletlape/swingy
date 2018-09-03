@@ -52,14 +52,14 @@ public class CLIController extends AbstractInterfaceController{
             view.cli.Cli.displayInputError();
         }
 
-        if (input == "i"){
+        if (input.equals("i")){
             showStats();
         }
-        if (input == "q"){
+        if (input.equals("q")){
             quitGame();
         }
 
-        if (input == "x"){
+        if (input.equals("x")){
             switchUI();
             return true;
         }
@@ -144,7 +144,8 @@ public class CLIController extends AbstractInterfaceController{
 
     private void showStats() {
         String heroName = arenaController.getArena().getHero().getName();
-        String heroType = arenaController.getArena().getHero().getClass().toString();
+        String heroType = arenaController.getArena().getHero().getHeroClass().toString();
+
         int heroXp = arenaController.getArena().getHero().getXp();
         int heroHp = arenaController.getArena().getHero().getHp();
         int heroLevel = arenaController.getArena().getHero().getLevel();
@@ -176,7 +177,7 @@ public class CLIController extends AbstractInterfaceController{
             return "";
     }
 
-    private void waitForEnterPress() {
+    public void waitForEnterPress() {
         try {
             System.in.read();
         } catch (IOException e) {

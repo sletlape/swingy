@@ -14,7 +14,7 @@ public class Cli implements UserInterface {
     public static void battleWonMessage(String villainName) {
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("Congratulations, you have defeated a "+ villainName+
-                ".\n You have gained 25 points");
+                ".\n You have gained 250 points");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
 
@@ -22,7 +22,8 @@ public class Cli implements UserInterface {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("Hero name:\t\t"+heroName);
         System.out.println("Hero class:\t\t" +heroType);
-        System.out.println("Hero xp:\t\t"+heroXp);
+        System.out.println("Hero XP:\t\t"+heroXp);
+        System.out.println("Hero HP:\t\t"+heroHp);
         System.out.println("Hero level:\t\t"+heroLevel);
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }

@@ -27,52 +27,71 @@ public class VillainFactory {
     }
 
     private static Villain newTBag() {
-        int xp = 10;
-        int hp = 1;
+        int xp = 1;
+        int hp = 100;
         String VillainClass = "TBag";
         return new Villain(VillainClass, hp, xp, EArtifactClass.Shank);
     }
 
     private static Villain newMahone() {
-        int xp = 10;
-        int hp = 1;
+        int xp = 1;
+        int hp = 55;
         String VillainClass = "Mahone";
         return new Villain(VillainClass, hp, xp, EArtifactClass.Gun);
     }
 
     private static Villain newBellick() {
-        int xp = 10;
-        int hp = 1;
+        int xp = 1;
+        int hp = 70;
         String VillainClass = "Bellick";
         return new Villain(VillainClass, hp, xp, EArtifactClass.Taser);
     }
 
     public static ArrayList<LiveEntity> randomVillain(int mapSize) {
         ArrayList<LiveEntity> villainArrayList = new ArrayList<>();
+
+        Villain villain = null;
+
         for (int i = 0; i < mapSize; i++) {
-            Villain villain = newVillain(EVillainClass.TBag);
+
+            villain = makeRandomVillainType();
+
             villain.setPoint(putVillainRandomly(mapSize));
             villainArrayList.add(villain);
         }
         return villainArrayList;
     }
 
+    private static Villain makeRandomVillainType() {
+
+
+        int villainTypeID = randomizer(3);
+
+        switch (villainTypeID){
+            case 1:
+                return newVillain(EVillainClass.Mahone);
+            case 2:
+                return newVillain(EVillainClass.Bellick);
+            default:
+                return newVillain(EVillainClass.TBag);
+        }
+    }
 
     private static Point putVillainRandomly(int mapSize) {
         Point villainPoint =  new Point();
 
-        villainPoint.x = randomisePoint(mapSize);
-        villainPoint.y = randomisePoint(mapSize);
+        villainPoint.x = randomizer(mapSize);
+        villainPoint.y = randomizer(mapSize);
 
         return villainPoint;
     }
 
 
-    private static int randomisePoint(int mapSize) {
+    private static int randomizer(int size) {
 
         Random rnd = new Random();
 
-        int randomOnMap = rnd.nextInt(mapSize);
+        int randomOnMap = rnd.nextInt(size);
 
         return randomOnMap;
     }
