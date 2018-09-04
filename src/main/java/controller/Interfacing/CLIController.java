@@ -18,13 +18,30 @@ public class CLIController extends AbstractInterfaceController{
         super(arenaController);
     }
 
-
     @Override
     void run() {
+
         userInterface.displayWelcomeMessage();
         waitForEnterPress();
-        prePlayInitialisation();
+        selectProfile();
+        //
         gameLoop();
+    }
+
+    @Override
+    void selectProfile() {
+        userInterface.promptProfileSelection();
+
+        String input = scannerGetInput();
+
+        if (input.equals("1"))
+            prePlayInitialisation();
+        else if (input.equals("2"))
+            ///Todo: get user to select profile
+            arenaController.getAllProfiles();
+        else
+            userInterface.displayInputError();
+
     }
 
     private void gameLoop() {
@@ -49,7 +66,7 @@ public class CLIController extends AbstractInterfaceController{
         }
 
         if (!validChoice){
-            view.cli.Cli.displayInputError();
+            userInterface.displayInputError();
         }
 
         if (input.equals("i")){
@@ -140,7 +157,6 @@ public class CLIController extends AbstractInterfaceController{
         }
         return null;
     }
-
 
     private void showStats() {
         String heroName = arenaController.getArena().getHero().getName();

@@ -9,12 +9,14 @@ import lombok.Getter;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
+import model.util.GameMessages;
 import persistence.ArenaRepository;
 import persistence.IRepository;
 import view.cli.Cli;
 
 import javax.validation.ConstraintViolation;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
@@ -23,16 +25,18 @@ public class ArenaController {
     Arena arena;
     PlayerController playerController = new PlayerController();
     MapController mapController = new MapController();
-    Battle battle = new Battle();
-
+    Battle battle;
     IRepository repository;
 
     public ArenaController(Arena arena) {
         this.arena = arena;
         repository = new ArenaRepository();
+        battle = new Battle(arena.getGameMessages());
     }
 
     public void move(EDirection direction) {
+        arena.setWasInfight(false);
+        arena.getGameMessages().clearMessages();
         Point newPoint = new Point(arena.getHero().getPoint());
         arena.getHero().setLastPoint(arena.getHero().getPoint());
 
@@ -96,6 +100,7 @@ public class ArenaController {
     }
 
     public void fight() {
+        arena.getGameMessages().clearMessages();
         if (this.arena.isInFight()){
             Point heroPoint = arena.getHero().getPoint();
             LiveEntity  villain = mapController.getObject(heroPoint);
@@ -109,11 +114,13 @@ public class ArenaController {
             }
             else
                 arena.setGameOver(true);
+            arena.setWasInfight(true);
             repository.update(arena);
         }
     }
 
     public void run(){
+        arena.getGameMessages().clearMessages();
         Random rndm = new Random();
         int success = rndm.nextInt(2);
 
@@ -151,5 +158,9 @@ public class ArenaController {
             }
         }
 
+    }
+
+    public ArrayList<Arena> getAllProfiles() {
+        return (ArrayList<Arena>) repository.getAll();
     }
 }

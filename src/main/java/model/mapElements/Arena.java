@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import model.LivingElements.Hero;
 import model.LivingElements.Villain;
+import model.util.GameMessages;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Arena {
     @Transient
     WorldMap worldMap;
 
+
     @Transient
     ArrayList<Villain> villains;
 
@@ -31,11 +33,17 @@ public class Arena {
     @Type(type = "yes_no")
     boolean isInFight = false;
 
+    @Transient
+    boolean wasInfight = false;
+
     @Type(type = "yes_no")
     boolean isGameOver = false;
 
     @Type(type = "yes_no")
     boolean isValidPlayerName = false;
+
+    @Transient
+    GameMessages gameMessages = new GameMessages();
 
     public Arena(WorldMap worldMap, ArrayList<Villain> villains) {
         this.worldMap = worldMap;

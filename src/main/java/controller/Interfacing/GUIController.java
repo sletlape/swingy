@@ -30,6 +30,11 @@ public  class GUIController extends AbstractInterfaceController {
         });
     }
 
+    @Override
+    void selectProfile() {
+
+    }
+
     private void showMenu() {
         MenuPanel menuPanel = new MenuPanel();
         MenuController menuController = new MenuController(this, menuPanel);

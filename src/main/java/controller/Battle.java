@@ -3,9 +3,17 @@ package controller;
 import controller.Interfacing.CLIController;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
+import model.util.GameMessages;
 import view.cli.Cli;
 
 public class Battle {
+
+
+    private final GameMessages gameMessages;
+
+    public Battle(GameMessages gameMessages) {
+        this.gameMessages = gameMessages;
+    }
 
     public LiveEntity fight(Hero hero, LiveEntity villain) {
 
@@ -14,11 +22,12 @@ public class Battle {
         while ((hero.getHp() > 0) && (villain.getHp() > 0)){
             if (attacker == 1){
                 villain.setHp(villain.getHp() - hero.getArtifactClass().getAttack());
-                Cli.inFightMessage(hero.getName(), hero.getArtifactClass().getAttack(), villain.getName(), villain.getHp());
+
+                inFightMessage(hero.getName(), hero.getArtifactClass().getAttack(), villain.getName(), villain.getHp());
                 attacker = 2;
             }else{
                 hero.setHp(hero.getHp() - villain.getArtifactClass().getAttack());
-                Cli.inFightMessage(villain.getName(), villain.getArtifactClass().getAttack(), hero.getName(), hero.getHp());
+                inFightMessage(villain.getName(), villain.getArtifactClass().getAttack(), hero.getName(), hero.getHp());
                 attacker = 1;
             }
         }
@@ -26,11 +35,25 @@ public class Battle {
         //check who dies
         if (hero.getHp() > 0){
             hero.setXp(hero.getXp()+250);
-            Cli.battleWonMessage(villain.getName());
+            battleWonMessage(villain.getName());
             return hero;
         }
         else
-            Cli.battleLostMessage(villain.getName());
+            battleLostMessage(villain.getName());
             return villain;
+    }
+
+    private void inFightMessage(String attacker, int attackingPower, String defender, int attackedHealth) {
+        gameMessages.addMessage(attacker+" inflicts "+attackingPower+" damage on "+defender);
+        gameMessages.addMessage(defender+" now has "+attackedHealth+" HP");
+    }
+
+    private void battleWonMessage(String villainName) {
+        gameMessages.addMessage("Congratulations, you have defeated a "+ villainName+
+                ".\n You have gained 250 points");
+    }
+
+    private void battleLostMessage(String villainName) {
+        gameMessages.addMessage("You have lost to "+villainName);
     }
 }

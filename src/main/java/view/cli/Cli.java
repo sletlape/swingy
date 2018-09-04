@@ -5,18 +5,32 @@ import model.LivingElements.LiveEntity;
 import model.LivingElements.Villain;
 import model.mapElements.Arena;
 import model.mapElements.WorldMap;
+import model.util.GameMessages;
 import view.UserInterface;
 
 import java.awt.*;
 
 public class Cli implements UserInterface {
-
+/*
     public static void battleWonMessage(String villainName) {
+
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("Congratulations, you have defeated a "+ villainName+
                 ".\n You have gained 250 points");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
+
+    public void battleLostMessage(String villainName) {
+        System.out.println("You have lost to "+villainName);
+    }
+
+    public void inFightMessage(String attacker, int attackingPower, String defender, int attackedHealth) {
+        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
+        System.out.println(attacker+" inflicts "+attackingPower+" on "+defender);
+        System.out.println(defender+" now has "+attackedHealth+" HP");
+        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
+    }
+*/
 
     public static void displayHeroStats(String heroName, String heroType, int heroXp, int heroHp, int heroLevel) {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -28,15 +42,10 @@ public class Cli implements UserInterface {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
-    public static void battleLostMessage(String villainName) {
-        System.out.println("You have lost to "+villainName);
-    }
-
-    public static void inFightMessage(String attacker, int attackingPower, String defender, int attackedHealth) {
-        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
-        System.out.println(attacker+" inflicts "+attackingPower+" on "+defender);
-        System.out.println(defender+" now has "+attackedHealth+" HP");
-        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
+    public void promptProfileSelection() {
+        System.out.println("Please select an profile type:");
+        System.out.println("[1] \t New Profile");
+        System.out.println("[2] \t Old Profile");
     }
 
     public void displayWelcomeMessage() {
@@ -44,6 +53,8 @@ public class Cli implements UserInterface {
         System.out.println("Welcome to swingy-prison break!");
         System.out.println("Press enter to continue!");
     }
+
+
 
     public void greeting(String username) {
         System.out.println("Hello " + username + ", please select your avatar:");
@@ -86,7 +97,7 @@ public class Cli implements UserInterface {
         System.out.println("=================================");
     }
 
-    public static void displayInputError() {
+    public void displayInputError() {
         System.out.println("Invalid input, please select from the above options!");
     }
 
@@ -128,10 +139,18 @@ public class Cli implements UserInterface {
     }
 
     @Override
-    public void updateInterface(Arena arena) {
+    public void updateInterface(final Arena arena) {
+        if (arena.isWasInfight())
+            displayArenaMessages(arena.getGameMessages());
         promptUserInteraction();
         displayMap(arena);
         promptUserAction(arena.isInFight());
+    }
+
+    private void displayArenaMessages(final GameMessages gameMessages) {
+        for (String string : gameMessages.getMessages())
+            System.out.println(string);
+        System.out.println("***************************************");
     }
 
     @Override

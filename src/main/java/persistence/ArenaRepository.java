@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import java.beans.Transient;
 import java.util.Collection;
 
 public class ArenaRepository implements IRepository<Arena> {
@@ -21,7 +20,11 @@ public class ArenaRepository implements IRepository<Arena> {
 
     @Override
     public Collection<Arena> getAll() {
-        return null;
+
+        Transaction transaction = session.beginTransaction();
+        Collection<Arena> arenas = session.createCriteria(Arena.class).list();
+        transaction.commit();
+        return arenas;
     }
 
     @Override

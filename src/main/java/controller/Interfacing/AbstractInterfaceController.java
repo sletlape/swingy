@@ -3,10 +3,13 @@ package controller.Interfacing;
 import controller.Entity.ArenaController;
 import enums.EDirection;
 import enums.EHeroClass;
+import model.mapElements.Arena;
+
+import java.util.ArrayList;
 
 public abstract class AbstractInterfaceController {
     ArenaController arenaController;
-
+    Boolean profileSelected = false;
 
     public AbstractInterfaceController(ArenaController arenaController) {
         this.arenaController = arenaController;
@@ -27,6 +30,8 @@ public abstract class AbstractInterfaceController {
 
     abstract void run();
 
+    abstract void selectProfile();
+
     abstract void switchUI();
 
     abstract void updateUserInterface();
@@ -39,5 +44,10 @@ public abstract class AbstractInterfaceController {
     protected void runFromVillain(){
         arenaController.run();
         updateUserInterface();
+    }
+
+    protected ArrayList<Arena> getAllProfiles()
+    {
+        return arenaController.getAllProfiles();
     }
 }
