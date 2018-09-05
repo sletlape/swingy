@@ -9,7 +9,6 @@ import lombok.Getter;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
-import model.util.GameMessages;
 import persistence.ArenaRepository;
 import persistence.IRepository;
 import view.cli.Cli;
