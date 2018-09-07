@@ -95,7 +95,6 @@ public class ArenaController {
         playerController.registerHero(hero);
         mapController.initializeMap(arena.getWorldMap(), hero.getLevel());
         mapController.addObject(hero);
-
     }
 
     public void fight() {
@@ -165,5 +164,9 @@ public class ArenaController {
 
     public void loadProfile(Hero profile) {
         this.arena.setHero(profile);
+
+        playerController.registerHero(profile);
+        mapController.initializeMap(arena.getWorldMap(), profile.getLevel());
+        mapController.addObject(profile);
     }
 }

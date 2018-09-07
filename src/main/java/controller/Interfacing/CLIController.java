@@ -47,7 +47,8 @@ public class CLIController extends AbstractInterfaceController{
                 profileSelected = true;
             } else
                 userInterface.displayInputError();
-        } }
+        }
+    }
 
     private void displayOldProfiles() {
         ArrayList<Hero> profiles = (ArrayList<Hero>) arenaController.getAllProfiles();
@@ -152,7 +153,6 @@ public class CLIController extends AbstractInterfaceController{
     }
 
     private void prePlayInitialisation() {
-
         userInterface.chooseAvatarType();
         EHeroClass avatarType = gettingAvatarChoice();
         createHero(avatarType);
@@ -163,7 +163,6 @@ public class CLIController extends AbstractInterfaceController{
             username = scanner.nextLine();
             setPlayerName(username);
         }
-      //  System.out.println("Hello "+username+" "+avatarType);
     }
 
     private EHeroClass gettingAvatarChoice() {
