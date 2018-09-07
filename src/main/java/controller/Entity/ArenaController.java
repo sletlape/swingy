@@ -9,13 +9,13 @@ import lombok.Getter;
 import model.LivingElements.Hero;
 import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
-import persistence.ArenaRepository;
 import persistence.IRepository;
+import persistence.RepositoryImpl;
 import view.cli.Cli;
 
 import javax.validation.ConstraintViolation;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 import java.util.Set;
 
@@ -29,7 +29,7 @@ public class ArenaController {
 
     public ArenaController(Arena arena) {
         this.arena = arena;
-        repository = new ArenaRepository();
+        repository = new RepositoryImpl<Hero>();
         battle = new Battle(arena.getGameMessages());
     }
 
@@ -56,7 +56,7 @@ public class ArenaController {
                     break;
             }
         }else {
-            repository.update(arena);
+            repository.update(arena.getHero());
             arena.setGameOver(true);
         }
 
@@ -114,7 +114,7 @@ public class ArenaController {
             else
                 arena.setGameOver(true);
             arena.setWasInfight(true);
-            repository.update(arena);
+            repository.update(arena.getHero());
         }
     }
 
@@ -149,7 +149,7 @@ public class ArenaController {
 
         if (violations.isEmpty()) {
             arena.setValidPlayerName(true);
-            repository.create(arena);
+            repository.create(arena.getHero());
         }
         else {
             for (ConstraintViolation<LiveEntity> violation: violations) {
@@ -159,7 +159,11 @@ public class ArenaController {
 
     }
 
-    public ArrayList<Arena> getAllProfiles() {
-        return (ArrayList<Arena>) repository.getAll();
+    public Collection getAllProfiles() {
+        return repository.getAll();
+    }
+
+    public void loadProfile(Hero profile) {
+        this.arena.setHero(profile);
     }
 }

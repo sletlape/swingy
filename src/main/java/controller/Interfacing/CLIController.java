@@ -3,9 +3,13 @@ package controller.Interfacing;
 import controller.Entity.ArenaController;
 import enums.EDirection;
 import enums.EHeroClass;
+import model.LivingElements.Hero;
+import model.mapElements.Arena;
+import sun.security.ec.ECDHKeyAgreement;
 import view.cli.Cli;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CLIController extends AbstractInterfaceController{
@@ -24,24 +28,49 @@ public class CLIController extends AbstractInterfaceController{
         userInterface.displayWelcomeMessage();
         waitForEnterPress();
         selectProfile();
-        //
         gameLoop();
     }
 
     @Override
     void selectProfile() {
-        userInterface.promptProfileSelection();
+        Boolean profileSelected = false;
 
-        String input = scannerGetInput();
+        while (!profileSelected){
+            userInterface.promptProfileSelection();
+            String input = scannerGetInput();
 
-        if (input.equals("1"))
-            prePlayInitialisation();
-        else if (input.equals("2"))
-            ///Todo: get user to select profile
-            arenaController.getAllProfiles();
-        else
-            userInterface.displayInputError();
+            if (input.equals("1")){
+                prePlayInitialisation();
+                profileSelected = true;
+            } else if (input.equals("2")) {
+                displayOldProfiles();
+                profileSelected = true;
+            } else
+                userInterface.displayInputError();
+        } }
 
+    private void displayOldProfiles() {
+        ArrayList<Hero> profiles = (ArrayList<Hero>) arenaController.getAllProfiles();
+        userInterface.displayOldProfiles(profiles);
+        Boolean profileSelected = false;
+
+        while (!profileSelected){
+            String input = scannerGetInput();
+            try {
+                int idChosen = Integer.parseInt(input);
+
+                if (idChosen > 0 && idChosen <= profiles.size() - 1) {
+                    Hero profile = profiles.get(idChosen);
+                    loadProfile(profile);
+                    profileSelected = true;
+                }
+                else
+                    userInterface.displayInputError();
+            }
+            catch (NumberFormatException e) {
+                userInterface.displayInputError();
+            }
+        }
     }
 
     private void gameLoop() {
@@ -134,7 +163,6 @@ public class CLIController extends AbstractInterfaceController{
             username = scanner.nextLine();
             setPlayerName(username);
         }
-
       //  System.out.println("Hello "+username+" "+avatarType);
     }
 

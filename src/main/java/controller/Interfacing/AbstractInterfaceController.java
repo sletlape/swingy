@@ -3,13 +3,13 @@ package controller.Interfacing;
 import controller.Entity.ArenaController;
 import enums.EDirection;
 import enums.EHeroClass;
+import model.LivingElements.Hero;
 import model.mapElements.Arena;
 
 import java.util.ArrayList;
 
 public abstract class AbstractInterfaceController {
     ArenaController arenaController;
-    Boolean profileSelected = false;
 
     public AbstractInterfaceController(ArenaController arenaController) {
         this.arenaController = arenaController;
@@ -46,8 +46,14 @@ public abstract class AbstractInterfaceController {
         updateUserInterface();
     }
 
-    protected ArrayList<Arena> getAllProfiles()
+    protected ArrayList<Hero> getAllProfiles()
     {
-        return arenaController.getAllProfiles();
+        return (ArrayList<Hero>) arenaController.getAllProfiles();
+    }
+
+
+    public void loadProfile(Hero profile) {
+        arenaController.loadProfile(profile);
+        updateUserInterface();
     }
 }

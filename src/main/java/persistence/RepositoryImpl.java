@@ -1,6 +1,6 @@
 package persistence;
 
-import model.mapElements.Arena;
+import model.LivingElements.Hero;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,37 +8,36 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Collection;
 
-public class ArenaRepository implements IRepository<Arena> {
-
+public class RepositoryImpl<T> implements IRepository<T> {
     SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
     Session session = sessionFactory.openSession();
 
+    Class<T> type;
+
     @Override
-    public Arena getByID(int id) {
+    public T getByID(int id) {
         return null;
     }
 
     @Override
-    public Collection<Arena> getAll() {
+    public Collection<T> getAll() {
 
         Transaction transaction = session.beginTransaction();
-        Collection<Arena> arenas = session.createCriteria(Arena.class).list();
+        Collection<T> heroes = session.createCriteria(Hero.class).list();
         transaction.commit();
-        return arenas;
+        return heroes;
     }
 
     @Override
-    public Arena create(Arena entity) {
+    public T create(T entity) {
         Transaction transaction = session.beginTransaction();
         session.save(entity);
         transaction.commit();
-
-        System.out.println("The profile chosen is: "+entity.getHero().getName());
         return entity;
     }
 
     @Override
-    public Arena update(Arena entity) {
+    public T update(T entity) {
         Transaction transaction = session.beginTransaction();
         session.update(entity);
         transaction.commit();
@@ -46,7 +45,7 @@ public class ArenaRepository implements IRepository<Arena> {
     }
 
     @Override
-    public Arena delete(Arena entity) {
+    public T delete(T entity) {
         return null;
     }
 }

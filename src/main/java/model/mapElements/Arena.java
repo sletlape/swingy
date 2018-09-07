@@ -14,17 +14,16 @@ import java.util.ArrayList;
 @Setter
 @Getter
 public class Arena {
-
-    @Id
-    @Column(updatable = false, nullable = false, length = 100)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//
+//    @Id
+//    @Column(updatable = false, nullable = false, length = 100)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     WorldMap worldMap;
 
-
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     ArrayList<Villain> villains;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
@@ -42,7 +41,7 @@ public class Arena {
     @Type(type = "yes_no")
     boolean isValidPlayerName = false;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     GameMessages gameMessages = new GameMessages();
 
     public Arena(WorldMap worldMap, ArrayList<Villain> villains) {

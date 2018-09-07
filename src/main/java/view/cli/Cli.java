@@ -9,6 +9,7 @@ import model.util.GameMessages;
 import view.UserInterface;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Cli implements UserInterface {
 /*
@@ -161,4 +162,19 @@ public class Cli implements UserInterface {
     }
 
 
+    public void displayOldProfiles(ArrayList<Hero> profiles) {
+        String format = "%-20s %-20s\n";
+        System.out.println("*******************************************************");
+        System.out.println("Profiles from database");
+        System.out.println("*******************************************************");
+        System.out.format( format + "\n", "Profile ID", "User Name");
+
+        int count = 1;
+
+        for (Hero heroProfiles : profiles) {
+            System.out.format( format, count++, heroProfiles.getName());
+        }
+
+        System.out.println("Select profile ID");
+    }
 }
