@@ -11,6 +11,7 @@ import model.LivingElements.LiveEntity;
 import model.mapElements.Arena;
 import persistence.IRepository;
 import persistence.RepositoryImpl;
+import utils.Formulas;
 import view.cli.Cli;
 
 import javax.validation.ConstraintViolation;
@@ -164,6 +165,9 @@ public class ArenaController {
 
     public void loadProfile(Hero profile) {
         this.arena.setHero(profile);
+        //set the size of the arena
+        int mapSize = Formulas.getMapSize(profile.getLevel());
+        this.arena.getWorldMap().setSize(mapSize);
 
         playerController.registerHero(profile);
         mapController.initializeMap(arena.getWorldMap(), profile.getLevel());

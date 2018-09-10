@@ -14,11 +14,8 @@ public class PlayerController {
         int level = hero.getLevel();
         int heroXp = this.hero.getXp();
 
-        ///TODO: move this line to formulas
         if (heroXp <= Formulas.toNextLevel(level))
-       // if (heroXp <= (level*100+Math.pow(level-1,2)*450)){
             hero.setLevel(level+1);
-//        }
     }
 
     void collectAritfact(Artifact artifact) {
@@ -30,7 +27,8 @@ public class PlayerController {
     }
 
     private void putHeroInTheCenter() {
-        Point heroPoint = hero.getPoint();
+        Point heroPoint = new Point(0,0);
+        //Point heroPoint = hero.getPoint();
         int mapSize = Formulas.getMapSize(hero.getLevel());
         heroPoint.x = mapSize /2;
         heroPoint.y = mapSize /2;
