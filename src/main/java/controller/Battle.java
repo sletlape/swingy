@@ -37,13 +37,16 @@ public class Battle {
             hero.setXp(hero.getXp()+250);
             battleWonMessage(villain.getName());
             return hero;
-        }
-        else
+        }else{
+            //hero.setHp(100);
             battleLostMessage(villain.getName());
             return villain;
+        }
     }
 
     private void inFightMessage(String attacker, int attackingPower, String defender, int attackedHealth) {
+        if (attackedHealth < 0)
+            attackedHealth = 0;
         gameMessages.addMessage(attacker+" inflicts "+attackingPower+" damage on "+defender);
         gameMessages.addMessage(defender+" now has "+attackedHealth+" HP");
     }

@@ -24,11 +24,11 @@ public class CLIController extends AbstractInterfaceController{
 
     @Override
     void run() {
-
         userInterface.displayWelcomeMessage();
         waitForEnterPress();
         selectProfile();
         gameLoop();
+        System.exit(0);
     }
 
     @Override
@@ -47,29 +47,33 @@ public class CLIController extends AbstractInterfaceController{
                 profileSelected = true;
             } else
                 userInterface.displayInputError();
-        }
-    }
+        }}
 
     private void displayOldProfiles() {
         ArrayList<Hero> profiles = (ArrayList<Hero>) arenaController.getAllProfiles();
         userInterface.displayOldProfiles(profiles);
         Boolean profileSelected = false;
 
-        while (!profileSelected){
-            String input = scannerGetInput();
-            try {
-                int idChosen = Integer.parseInt(input);
+        if (profiles.size() <= 0) {
+            userInterface.displayEmptyDatabaseError();
+            selectProfile();
+        }else {
+            while (!profileSelected){
+                String input = scannerGetInput();
+                try {
+                    int idChosen = Integer.parseInt(input)-1;
 
-                if (idChosen > 0 && idChosen <= profiles.size() - 1) {
-                    Hero profile = profiles.get(idChosen);
-                    loadProfile(profile);
-                    profileSelected = true;
+                    if (idChosen >= 0 && idChosen < profiles.size()) {
+                        Hero profile = profiles.get(idChosen);
+                        loadProfile(profile);
+                        profileSelected = true;
+                    }
+                    else
+                        userInterface.displayInputError();
                 }
-                else
+                catch (NumberFormatException e) {
                     userInterface.displayInputError();
-            }
-            catch (NumberFormatException e) {
-                userInterface.displayInputError();
+                }
             }
         }
     }
@@ -80,8 +84,11 @@ public class CLIController extends AbstractInterfaceController{
         do {
             input = scannerGetInput();
         } while (!evaluate(input) && !arenaController.getArena().isGameOver());
-        userInterface.displayGoodByeWin();
-    }
+        if (arenaController.getArena().getHero().getHp() > 0)
+            userInterface.displayGoodByeWin();
+        else{
+            userInterface.displayGoodByeLost();
+        } }
 
     private boolean evaluate(String input) {
 
@@ -91,6 +98,7 @@ public class CLIController extends AbstractInterfaceController{
 
         if (!arenaController.getArena().isInFight()){
             validChoice = moveEvaluation(input);
+            gainMovePoints();
         }else {
             validChoice = fightOrFlight(input);
         }
@@ -111,6 +119,11 @@ public class CLIController extends AbstractInterfaceController{
             return true;
         }
         return false;
+    }
+
+    private void gainMovePoints() {
+        int movePoints = arenaController.getArena().getHero().getXp()+15;
+        arenaController.getArena().getHero().setXp(movePoints);
     }
 
     private boolean fightOrFlight(String input) {

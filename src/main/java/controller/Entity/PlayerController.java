@@ -28,7 +28,7 @@ public class PlayerController {
 
     private void putHeroInTheCenter() {
         Point heroPoint = new Point(0,0);
-        //Point heroPoint = hero.getPoint();
+        hero.setPoint(heroPoint);
         int mapSize = Formulas.getMapSize(hero.getLevel());
         heroPoint.x = mapSize /2;
         heroPoint.y = mapSize /2;

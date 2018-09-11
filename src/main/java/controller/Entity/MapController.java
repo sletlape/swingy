@@ -21,8 +21,8 @@ public class MapController {
 
         int mapSize = Formulas.getMapSize(heroLevel);
         worldMap.setSize(mapSize);
-        ArrayList<LiveEntity> randomVillian = VillainFactory.randomVillain(mapSize);
-        addObjects(randomVillian);
+        ArrayList<LiveEntity> randomVillain = VillainFactory.randomVillain(mapSize);
+        addObjects(randomVillain);
     }
 
     private void addObjects(ArrayList<LiveEntity> objects) {

@@ -2,7 +2,6 @@ package controller.Interfacing;
 
 import enums.EHeroClass;
 import view.gui.MenuPanel;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -27,8 +26,4 @@ public class MenuController {
     private void addAllListeners() {
         menuPanel.addBtnNewHeroListener(newHeroListener);
     }
-
-
-
-
 }

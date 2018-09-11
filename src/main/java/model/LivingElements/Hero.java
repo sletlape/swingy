@@ -17,7 +17,6 @@ public class Hero extends LiveEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Transient
     EHeroClass heroClass;
 
     @Transient

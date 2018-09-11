@@ -17,6 +17,7 @@ public  class GUIController extends AbstractInterfaceController {
 
     public GUIController(ArenaController arenaController) {
         super(arenaController);
+        System.out.println("I'm alive");
     }
 
     @Override

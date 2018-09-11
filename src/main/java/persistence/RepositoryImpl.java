@@ -21,7 +21,6 @@ public class RepositoryImpl<T> implements IRepository<T> {
 
     @Override
     public Collection<T> getAll() {
-
         Transaction transaction = session.beginTransaction();
         Collection<T> heroes = session.createCriteria(Hero.class).list();
         transaction.commit();
@@ -46,6 +45,9 @@ public class RepositoryImpl<T> implements IRepository<T> {
 
     @Override
     public T delete(T entity) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(entity);
+        transaction.commit();
         return null;
     }
 }

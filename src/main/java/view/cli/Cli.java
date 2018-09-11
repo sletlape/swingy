@@ -12,26 +12,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Cli implements UserInterface {
-/*
-    public static void battleWonMessage(String villainName) {
-
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("Congratulations, you have defeated a "+ villainName+
-                ".\n You have gained 250 points");
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    }
-
-    public void battleLostMessage(String villainName) {
-        System.out.println("You have lost to "+villainName);
-    }
-
-    public void inFightMessage(String attacker, int attackingPower, String defender, int attackedHealth) {
-        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
-        System.out.println(attacker+" inflicts "+attackingPower+" on "+defender);
-        System.out.println(defender+" now has "+attackedHealth+" HP");
-        System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{");
-    }
-*/
 
     public static void displayHeroStats(String heroName, String heroType, int heroXp, int heroHp, int heroLevel) {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -120,7 +100,6 @@ public class Cli implements UserInterface {
                     System.out.print("[H]");
                 else if (player instanceof Villain)
                     System.out.print("[V]");
-
             }
             System.out.println();
         }
@@ -156,17 +135,23 @@ public class Cli implements UserInterface {
 
     @Override
     public void displayGoodByeWin() {
-        System.out.println("*******************************************************");
+        System.out.println("*************************************************************************");
         System.out.println("You have escaped, congratulations you are free to continue with your day.");
-        System.out.println("*******************************************************");
+        System.out.println("*************************************************************************");
     }
 
+    public void displayGoodByeLost() {
+        System.out.println("*************************************************************************");
+        System.out.println("Your HP is 0, You have lost..");
+        System.out.println("Your HP has been reset to 100 and all other values are saved!");
+        System.out.println("*************************************************************************");
+    }
 
     public void displayOldProfiles(ArrayList<Hero> profiles) {
         String format = "%-20s %-20s\n";
-        System.out.println("*******************************************************");
+        System.out.println("*************************");
         System.out.println("Profiles from database");
-        System.out.println("*******************************************************");
+        System.out.println("*************************");
         System.out.format( format + "\n", "Profile ID", "User Name");
 
         int count = 1;
@@ -174,7 +159,12 @@ public class Cli implements UserInterface {
         for (Hero heroProfiles : profiles) {
             System.out.format( format, count++, heroProfiles.getName());
         }
-
         System.out.println("Select profile ID");
+    }
+
+    public void displayEmptyDatabaseError() {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("You the database is empty, please select option 1 \"New Profile\"!");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 }

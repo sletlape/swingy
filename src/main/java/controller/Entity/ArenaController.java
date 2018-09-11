@@ -111,8 +111,9 @@ public class ArenaController {
                 arena.setInFight(false);
                 playerController.levelUp();
             }
-            else
+            else {
                 arena.setGameOver(true);
+            }
             arena.setWasInfight(true);
             repository.update(arena.getHero());
         }
@@ -156,7 +157,6 @@ public class ArenaController {
                 System.out.println(violation.getMessage());
             }
         }
-
     }
 
     public Collection getAllProfiles() {
@@ -164,6 +164,7 @@ public class ArenaController {
     }
 
     public void loadProfile(Hero profile) {
+        resetHP(profile);
         this.arena.setHero(profile);
         //set the size of the arena
         int mapSize = Formulas.getMapSize(profile.getLevel());
@@ -172,5 +173,9 @@ public class ArenaController {
         playerController.registerHero(profile);
         mapController.initializeMap(arena.getWorldMap(), profile.getLevel());
         mapController.addObject(profile);
+    }
+
+    private void resetHP(Hero profile) {
+        profile.setHp(100);
     }
 }
