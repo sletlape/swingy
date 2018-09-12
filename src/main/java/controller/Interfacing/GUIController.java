@@ -17,7 +17,6 @@ public  class GUIController extends AbstractInterfaceController {
 
     public GUIController(ArenaController arenaController) {
         super(arenaController);
-        System.out.println("I'm alive");
     }
 
     @Override
@@ -31,11 +30,6 @@ public  class GUIController extends AbstractInterfaceController {
         });
     }
 
-    @Override
-    void selectProfile() {
-
-    }
-
     private void showMenu() {
         MenuPanel menuPanel = new MenuPanel();
         MenuController menuController = new MenuController(this, menuPanel);
@@ -47,8 +41,11 @@ public  class GUIController extends AbstractInterfaceController {
     }
 
     @Override
-    void switchUI() {
+    void selectProfile() {
+    }
 
+    @Override
+    void switchUI() {
     }
 
     @Override

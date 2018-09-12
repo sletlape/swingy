@@ -129,7 +129,7 @@ public class ArenaController {
             arena.setInFight(false);
             backToLastPoint();
         }else {
-            Cli.displayTooSowForEnemyMsg();
+            Cli.displayTooSlowForEnemyMsg();
             System.out.println("Cannot run away, you have to fight");
             fight();
         }

@@ -10,9 +10,6 @@ public class MenuPanel extends IWindowPanel {
     JButton btnLoadHero = new JButton("Load Hero");
 
     public MenuPanel() {
-        //this.setLayout(null);
-        //lblWelcome.setBounds(220, 20, 180, 50);
-        //btnNewHero.setBounds(60, 100,60,20);
         this.add(lblWelcome);
         this.add(btnNewHero);
         this.add(btnLoadHero);
@@ -25,5 +22,8 @@ public class MenuPanel extends IWindowPanel {
 
     public void addBtnNewHeroListener(AbstractAction newHeroListener) {
         btnNewHero.addActionListener(newHeroListener);
+    }
+
+    public void addBtnDatabaseListener() {
     }
 }

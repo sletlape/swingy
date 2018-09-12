@@ -7,7 +7,6 @@ import factory.ArenaControllerFactory;
 public class GameController {
 
     public void initGame(EInterface userInterface){
-///
         ArenaController arenaController = ArenaControllerFactory.newArenaFromTheGameState();
 
         AbstractInterfaceController controller = userInterface == EInterface.CLI ?

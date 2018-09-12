@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 public class Cli implements UserInterface {
 
-    public static void displayHeroStats(String heroName, String heroType, int heroXp, int heroHp, int heroLevel) {
+    @Override
+    public void displayHeroStats(String heroName, String heroType, int heroXp, int heroHp, int heroLevel) {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("Hero name:\t\t"+heroName);
         System.out.println("Hero class:\t\t" +heroType);
@@ -23,6 +24,7 @@ public class Cli implements UserInterface {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
+    @Override
     public void promptProfileSelection() {
         System.out.println("Please select an profile type:");
         System.out.println("[1] \t New Profile");
@@ -35,12 +37,11 @@ public class Cli implements UserInterface {
         System.out.println("Press enter to continue!");
     }
 
-
-
     public void greeting(String username) {
         System.out.println("Hello " + username + ", please select your avatar:");
     }
 
+    @Override
     public void chooseAvatarType(){
         System.out.println("Please select an avatar type:");
         System.out.println("[1] \t Lincoln");
@@ -48,6 +49,7 @@ public class Cli implements UserInterface {
         System.out.println("[3] \t Fernando");
     }
 
+    @Override
     public void userName() {
         System.out.println("Please enter a username: ");
     }
@@ -114,7 +116,7 @@ public class Cli implements UserInterface {
         System.out.println("Choice is not recognised, please try again.");
     }
 
-    public static void displayTooSowForEnemyMsg() {
+    public static void displayTooSlowForEnemyMsg() {
         System.out.println("The enemy is too fast for you, you have to fight.");
     }
 
@@ -140,6 +142,7 @@ public class Cli implements UserInterface {
         System.out.println("*************************************************************************");
     }
 
+    @Override
     public void displayGoodByeLost() {
         System.out.println("*************************************************************************");
         System.out.println("Your HP is 0, You have lost..");
@@ -147,6 +150,7 @@ public class Cli implements UserInterface {
         System.out.println("*************************************************************************");
     }
 
+    @Override
     public void displayOldProfiles(ArrayList<Hero> profiles) {
         String format = "%-20s %-20s\n";
         System.out.println("*************************");
@@ -162,6 +166,7 @@ public class Cli implements UserInterface {
         System.out.println("Select profile ID");
     }
 
+    @Override
     public void displayEmptyDatabaseError() {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("You the database is empty, please select option 1 \"New Profile\"!");

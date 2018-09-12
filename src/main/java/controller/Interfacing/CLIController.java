@@ -206,7 +206,7 @@ public class CLIController extends AbstractInterfaceController{
         int heroHp = arenaController.getArena().getHero().getHp();
         int heroLevel = arenaController.getArena().getHero().getLevel();
 
-        Cli.displayHeroStats(heroName, heroType, heroXp, heroHp, heroLevel);
+        userInterface.displayHeroStats(heroName, heroType, heroXp, heroHp, heroLevel);
     }
 
     @Override

@@ -46,8 +46,7 @@ public abstract class AbstractInterfaceController {
         updateUserInterface();
     }
 
-    protected ArrayList<Hero> getAllProfiles()
-    {
+    protected ArrayList<Hero> getAllProfiles(){
         return (ArrayList<Hero>) arenaController.getAllProfiles();
     }
 

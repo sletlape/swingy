@@ -25,5 +25,6 @@ public class MenuController {
 
     private void addAllListeners() {
         menuPanel.addBtnNewHeroListener(newHeroListener);
+        menuPanel.addBtnDatabaseListener();
     }
 }

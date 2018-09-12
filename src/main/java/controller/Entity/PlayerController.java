@@ -14,7 +14,7 @@ public class PlayerController {
         int level = hero.getLevel();
         int heroXp = this.hero.getXp();
 
-        if (heroXp <= Formulas.toNextLevel(level))
+        if (heroXp >= Formulas.toNextLevel(level))
             hero.setLevel(level+1);
     }
 
