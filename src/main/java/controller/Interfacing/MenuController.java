@@ -15,6 +15,7 @@ public class MenuController {
         addAllListeners();
     }
 
+    ///TODO: fix the flow here...
     private AbstractAction newHeroListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
