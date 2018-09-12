@@ -13,6 +13,7 @@ public class WorldPanel extends IWindowPanel{
         this.setLayout(new BorderLayout());
         mapPanel.generateMap(arena.getWorldMap().getSize());
         this.add(mapPanel);
+        this.add(new TextArea(), BorderLayout.EAST);
         updatePanel(arena);
     }
 
