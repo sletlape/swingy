@@ -33,14 +33,19 @@ public class MapPanel extends JPanel {
                 LiveEntity player = worldMap.getMap().get(point);
                 MapCell mapCell = (MapCell) getComponent(count++);
 
-                if (player == null)
+                if (player == null) {
                     mapCell.setValues("");
-                else if (player instanceof Villain && player.getPoint().equals(arena.getHero().getPoint()))
+                    mapCell.setBackground(Color.gray);
+                }else if (player instanceof Villain && player.getPoint().equals(arena.getHero().getPoint())) {
                     mapCell.setValues("*");
-                else if (player instanceof Hero)
+                    mapCell.setBackground(Color.orange);
+                }else if (player instanceof Hero) {
                     mapCell.setValues("H");
-                else if (player instanceof Villain)
+                    mapCell.setBackground(Color.green);
+                }else if (player instanceof Villain){
                     mapCell.setValues("V");
+                    mapCell.setBackground(Color.red);
+                }
             }
         }
     }
