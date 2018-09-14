@@ -33,6 +33,7 @@ public class WorldPanelController {
     AbstractAction onDownListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            guiController.move(EDirection.DOWN);
         }
     };
 
