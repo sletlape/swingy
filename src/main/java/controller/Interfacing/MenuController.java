@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class MenuController {
     private final MenuPanel menuPanel;
+  //  private final AvatarPanel makeAvatar;
     private final GUIController guiController;
 
     public MenuController(GUIController guiController, MenuPanel menuPanel) {
@@ -19,13 +20,26 @@ public class MenuController {
     private AbstractAction newHeroListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            guiController.createHero(EHeroClass.Lincoln);
-            guiController.showWorldPanel();
+            ///TODO: move out of listener
+            EHeroClass avatarType = gettingAvatarChoice();
+            guiController.createHero(avatarType);
+            guiController.showAvatarPanel();
+        }
+    };
+
+    private EHeroClass gettingAvatarChoice() {
+        EHeroClass avatarType = EHeroClass.Lincoln;
+        return avatarType;
+    }
+
+    private AbstractAction fetchDatabaseListener = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
         }
     };
 
     private void addAllListeners() {
         menuPanel.addBtnNewHeroListener(newHeroListener);
-        menuPanel.addBtnDatabaseListener();
+        menuPanel.addBtnDatabaseListener(fetchDatabaseListener);
     }
 }

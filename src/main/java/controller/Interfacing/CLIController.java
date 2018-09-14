@@ -4,8 +4,6 @@ import controller.Entity.ArenaController;
 import enums.EDirection;
 import enums.EHeroClass;
 import model.LivingElements.Hero;
-import model.mapElements.Arena;
-import sun.security.ec.ECDHKeyAgreement;
 import view.cli.Cli;
 
 import java.io.IOException;
@@ -26,13 +24,13 @@ public class CLIController extends AbstractInterfaceController{
     void run() {
         userInterface.displayWelcomeMessage();
         waitForEnterPress();
-        selectProfile();
+        showMenu();
         gameLoop();
         System.exit(0);
     }
 
     @Override
-    void selectProfile() {
+    void showMenu() {
         Boolean profileSelected = false;
 
         while (!profileSelected){
@@ -56,7 +54,7 @@ public class CLIController extends AbstractInterfaceController{
 
         if (profiles.size() <= 0) {
             userInterface.displayEmptyDatabaseError();
-            selectProfile();
+            showMenu();
         }else {
             while (!profileSelected){
                 String input = scannerGetInput();

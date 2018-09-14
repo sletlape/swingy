@@ -4,7 +4,7 @@ import model.mapElements.Arena;
 
 import javax.swing.*;
 
-public class MenuPanel extends IWindowPanel {
+public class MenuPanel extends AWindowPanel {
     JLabel lblWelcome = new JLabel("<html><h1>Welcome to Swingy-prison break!<h1><br />");
     JButton btnNewHero = new JButton("Create New Hero");
     JButton btnLoadHero = new JButton("Load Hero");
@@ -24,6 +24,7 @@ public class MenuPanel extends IWindowPanel {
         btnNewHero.addActionListener(newHeroListener);
     }
 
-    public void addBtnDatabaseListener() {
+    public void addBtnDatabaseListener(AbstractAction fetchDatabaseListener) {
+        btnLoadHero.addActionListener(fetchDatabaseListener);
     }
 }

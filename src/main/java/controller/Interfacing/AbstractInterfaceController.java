@@ -30,7 +30,7 @@ public abstract class AbstractInterfaceController {
 
     abstract void run();
 
-    abstract void selectProfile();
+    abstract void showMenu();
 
     abstract void switchUI();
 

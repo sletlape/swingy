@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Gui implements UserInterface {
 
     MainWindow mainWindow = new MainWindow();
-    IWindowPanel currentPanel;
+    AWindowPanel currentPanel;
     public Gui() {
         mainWindow.setVisible(true);
     }
@@ -63,7 +63,7 @@ public class Gui implements UserInterface {
 
     }
 
-    public void switchPanel(IWindowPanel panel) {
+    public void switchPanel(AWindowPanel panel) {
         currentPanel = panel;
         mainWindow.setContentPane(panel);
         mainWindow.setVisible(true);

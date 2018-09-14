@@ -5,19 +5,21 @@ import model.mapElements.Arena;
 import javax.swing.*;
 import java.awt.*;
 
-public class WorldPanel extends IWindowPanel{
+public class WorldPanel extends AWindowPanel {
     MapPanel mapPanel = new MapPanel();
     //StatsPanel statsPanel = new StatsPanel();
     private final int WIF = JComponent.WHEN_IN_FOCUSED_WINDOW;
 
     public WorldPanel(Arena arena) {
         this.setLayout(new BorderLayout());
+        TextArea statsText = new TextArea();
+        statsText.setEditable(false);
         mapPanel.generateMap(arena.getWorldMap().getSize());
         //Get the stats from the arenaController and display them in the statsPanel;
-        ///TODO: statsPanel is a method that fetches the fetches the stats and prints them in point form as labels
+        ///TODO: statsPanel is a method that fetches the fetches the stats and prints them in point form as textArea with false editable
       //  statsPanel.
         this.add(mapPanel);
-        this.add(new TextArea(), BorderLayout.EAST);
+        this.add(statsText, BorderLayout.EAST);
         updatePanel(arena);
     }
 
