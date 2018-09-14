@@ -15,12 +15,7 @@ public class WorldPanelController {
         this.guiController = guiController;
 
         guiController.updateUserInterface();
-        if (!guiController.arenaController.getArena().isInFight()) {
-            addAllMoveListeners();
-            this.guiController.gainMovePoints();
-        }else{
-            System.out.println("Fighting");
-        }
+        addAllMoveListeners();
     }
 
     private void addAllMoveListeners() {

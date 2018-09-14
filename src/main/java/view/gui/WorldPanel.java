@@ -27,10 +27,6 @@ public class WorldPanel extends AWindowPanel {
         fightOrFlight.add(flight, BorderLayout.WEST);
         this.add(fightOrFlight, BorderLayout.SOUTH);
 
-        if (arena.isInFight()){
-            fight.setVisible(true);
-            flight.setVisible(true);
-        }
         fightOrFlight.setVisible(true);
 
         updatePanel(arena);

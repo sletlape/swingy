@@ -48,7 +48,6 @@ public  class GUIController extends AbstractInterfaceController {
         userInterface.updateInterface(arenaController.getArena());
     }
 
-
     public void showWorldPanel() {
         WorldPanel worldPanel = new WorldPanel(arenaController.getArena());
         WorldPanelController menuController = new WorldPanelController(this, worldPanel);
