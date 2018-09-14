@@ -1,7 +1,7 @@
 package controller.Interfacing;
 
 import enums.EDirection;
-import enums.EHeroClass;
+import model.LivingElements.Hero;
 import view.gui.AvatarPanel;
 
 import javax.swing.*;
@@ -9,19 +9,23 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class AvatarPanelController {
+    private final ArrayList<Hero> heroes;
+    private final boolean isFromDatabase;
     AvatarPanel avatarPanel;
     GUIController guiController;
-    private String playerSelected = "";
+    private int indexSelected;
     private String playerName = "";
 
 
 
-    public AvatarPanelController(GUIController guiController, AvatarPanel AvatarPanel) {
+    public AvatarPanelController(GUIController guiController, AvatarPanel AvatarPanel, ArrayList<Hero> heroes, boolean isFromDatabase) {
         this.avatarPanel = AvatarPanel;
         this.guiController = guiController;
-
+        this.heroes = heroes;
+        this.isFromDatabase = isFromDatabase;
         guiController.updateUserInterface();
         addAllListeners();
     }
@@ -68,9 +72,8 @@ public class AvatarPanelController {
     private AbstractAction onSelectedListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JRadioButton button = (JRadioButton) e.getSource();
-            playerSelected = button.getText();
-            System.out.println(playerSelected);
+            AvatarPanel.CustomRadioButton button = (AvatarPanel.CustomRadioButton) e.getSource();
+            indexSelected = button.getTag();
         }
     };
 
@@ -104,35 +107,16 @@ public class AvatarPanelController {
     private AbstractAction onSumbit = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            EHeroClass heroClass = getHeroClass();
-            if (heroClass != null) {
-                guiController.createHero(heroClass);
-                guiController.setPlayerName(playerName);
-                if (guiController.arenaController.isPlayerValid())
-                    guiController.showWorldPanel();
-                else
-                {
+            Hero hero = heroes.get(indexSelected);
+            guiController.loadProfile(hero);
+            guiController.setPlayerName(isFromDatabase ? hero.getName() : playerName);
+            if (guiController.arenaController.isPlayerValid())
+                guiController.showWorldPanel();
+            else {
                     //Player valid error
                 }
             }
-            else {
-                //Invalid hero error
-            }
-        }
     };
-
-    private EHeroClass getHeroClass() {
-        switch (playerSelected) {
-            case "Lincoln":
-                return EHeroClass.Lincoln;
-            case "Michael":
-                return EHeroClass.Michael;
-            case "Fernando":
-                return EHeroClass.Fernando;
-            default:
-                return null;
-        }
-    }
 
 
 }

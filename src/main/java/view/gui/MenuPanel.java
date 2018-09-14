@@ -17,7 +17,6 @@ public class MenuPanel extends AWindowPanel {
 
     @Override
     void updatePanel(Arena arena) {
-
     }
 
     public void addBtnNewHeroListener(AbstractAction newHeroListener) {

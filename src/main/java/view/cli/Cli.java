@@ -167,6 +167,7 @@ public class Cli implements UserInterface {
     }
 
     @Override
+    
     public void displayEmptyDatabaseError() {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("You the database is empty, please select option 1 \"New Profile\"!");

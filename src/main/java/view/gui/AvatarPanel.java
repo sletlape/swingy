@@ -1,43 +1,39 @@
 package view.gui;
 
-import controller.Interfacing.AvatarPanelController;
+import lombok.Getter;
+import model.LivingElements.Hero;
 import model.mapElements.Arena;
 
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class AvatarPanel extends AWindowPanel {
     JTextField txfProfileName = new JTextField(25);
-    JRadioButton rbtnLincoln = new JRadioButton("Lincoln");
-    JRadioButton rbtnMichael = new JRadioButton("Michael");
-    JRadioButton rbtnFernando = new JRadioButton("Fernando");
     JButton btnSubmit = new JButton("Submit");
 
     ButtonGroup bg = new ButtonGroup();
 
-    public AvatarPanel() {
+    public AvatarPanel(ArrayList<Hero> heroes, boolean isFromDatabase) {
 
-    //    txfProfileName.setColumns(20);
+        txfProfileName.setVisible(!isFromDatabase);
         txfProfileName.setDocument(new JTextFieldLimit(20));
         txfProfileName.setBounds(150, 10, 25, 300);
 
-        rbtnFernando.setBounds(75, 30, 100, 30);
-        rbtnLincoln.setBounds(75, 50, 100, 30);
-        rbtnMichael.setBounds(75, 70, 100, 30);
-
         this.add(txfProfileName);
+        int i = 0;
+        for (Hero hero : heroes){
+            CustomRadioButton button = new CustomRadioButton(hero.getName(), i++);
+            bg.add(button);
+            this.add(button);
+
+        }
+
 
         //Button group for radio buttons
-        bg.add(rbtnLincoln);
-        bg.add(rbtnMichael);
-        bg.add(rbtnFernando);
 
-        this.add(rbtnLincoln);
-        this.add(rbtnMichael);
-        this.add(rbtnFernando);
+
 
         btnSubmit.setBounds(100,150,100,30);
         this.add(btnSubmit);
@@ -76,6 +72,18 @@ public class AvatarPanel extends AWindowPanel {
     public void addTxtPlayerNameDocumentListener(DocumentListener documentListener)
     {
         txfProfileName.getDocument().addDocumentListener(documentListener);
+    }
+
+    public class CustomRadioButton extends JRadioButton {
+        @Getter
+        private int tag;
+
+        public CustomRadioButton(String name, int tag) {
+            this.tag = tag;
+            this.setText(name);
+
+
+        }
     }
 
 //    public void addBtnDatabaseListener(AbstractAction fetchDatabaseListener) {

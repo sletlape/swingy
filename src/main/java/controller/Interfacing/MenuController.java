@@ -20,10 +20,7 @@ public class MenuController {
     private AbstractAction newHeroListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ///TODO: move out of listener
-            EHeroClass avatarType = gettingAvatarChoice();
-            guiController.createHero(avatarType);
-            guiController.showAvatarPanel();
+            guiController.showNewAvatarPanel();
         }
     };
 
@@ -35,6 +32,8 @@ public class MenuController {
     private AbstractAction fetchDatabaseListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            guiController.showOldAvatarPanel();
+
         }
     };
 

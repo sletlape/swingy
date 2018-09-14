@@ -1,9 +1,13 @@
 package controller.Interfacing;
 
 import controller.Entity.ArenaController;
+import enums.EHeroClass;
+import factory.HeroFactory;
+import model.LivingElements.Hero;
 import view.gui.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public  class GUIController extends AbstractInterfaceController {
 
@@ -53,9 +57,26 @@ public  class GUIController extends AbstractInterfaceController {
     }
 
 
-    public void showAvatarPanel() {
-        AvatarPanel avatarPanel = new AvatarPanel();
-        AvatarPanelController avatarPanelController = new AvatarPanelController(this, avatarPanel);
+    public void showNewAvatarPanel() {
+        ArrayList<Hero> heroes = getNewProfiles();
+        AvatarPanel avatarPanel = new AvatarPanel(heroes, false);
+        AvatarPanelController avatarPanelController = new AvatarPanelController(this, avatarPanel, heroes, false);
         switchPanel(avatarPanel);
     }
+
+    public void showOldAvatarPanel() {
+        ArrayList<Hero> heroes = getAllProfiles();
+        AvatarPanel avatarPanel = new AvatarPanel(heroes, true);
+        AvatarPanelController avatarPanelController = new AvatarPanelController(this, avatarPanel, heroes, true);
+        switchPanel(avatarPanel);
+    }
+
+
+    private ArrayList<Hero> getNewProfiles() {
+        ArrayList<Hero> heroes = new ArrayList<>();
+        for (EHeroClass heroClass: EHeroClass.values())
+            heroes.add(HeroFactory.newHero(heroClass));
+        return heroes;
+    }
+
 }
