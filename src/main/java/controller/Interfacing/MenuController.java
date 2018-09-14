@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 
 public class MenuController {
     private final MenuPanel menuPanel;
-  //  private final AvatarPanel makeAvatar;
     private final GUIController guiController;
 
     public MenuController(GUIController guiController, MenuPanel menuPanel) {

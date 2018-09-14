@@ -35,7 +35,6 @@ public  class GUIController extends AbstractInterfaceController {
         switchPanel(menuPanel);
     }
 
-
     private void switchPanel(AWindowPanel windowPanel) {
         userInterface.switchPanel(windowPanel);
     }
@@ -56,7 +55,6 @@ public  class GUIController extends AbstractInterfaceController {
         switchPanel(worldPanel);
     }
 
-
     public void showNewAvatarPanel() {
         ArrayList<Hero> heroes = getNewProfiles();
         AvatarPanel avatarPanel = new AvatarPanel(heroes, false);
@@ -70,7 +68,6 @@ public  class GUIController extends AbstractInterfaceController {
         AvatarPanelController avatarPanelController = new AvatarPanelController(this, avatarPanel, heroes, true);
         switchPanel(avatarPanel);
     }
-
 
     private ArrayList<Hero> getNewProfiles() {
         ArrayList<Hero> heroes = new ArrayList<>();

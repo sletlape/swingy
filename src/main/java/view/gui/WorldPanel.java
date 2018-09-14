@@ -8,20 +8,34 @@ import java.awt.*;
 
 public class WorldPanel extends AWindowPanel {
     MapPanel mapPanel = new MapPanel();
+    JPanel fightOrFlight = new JPanel();
     TextArea statsText = new TextArea();
+
+    JButton fight = new JButton("Fight");
+    JButton flight = new JButton("Flight");
+
     private final int WIF = JComponent.WHEN_IN_FOCUSED_WINDOW;
 
     public WorldPanel(Arena arena) {
         this.setLayout(new BorderLayout());
         statsText.setEditable(false);
         mapPanel.generateMap(arena.getWorldMap().getSize());
-        //Get the stats from the arenaController and display them in the statsPanel;
-        ///TODO: statsPanel is a method that fetches the fetches the stats and prints them in point form as textArea with false editable
-      //  statsPanel.
         this.add(mapPanel);
         this.add(statsText, BorderLayout.EAST);
+
+        fightOrFlight.add(fight, BorderLayout.EAST);
+        fightOrFlight.add(flight, BorderLayout.WEST);
+        this.add(fightOrFlight, BorderLayout.SOUTH);
+
+        if (arena.isInFight()){
+            fight.setVisible(true);
+            flight.setVisible(true);
+        }
+        fightOrFlight.setVisible(true);
+
         updatePanel(arena);
     }
+
 
     public void updatePlayerStats(Hero hero){
         statsText.setText(hero.toString());

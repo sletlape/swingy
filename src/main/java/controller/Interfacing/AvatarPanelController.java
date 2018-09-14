@@ -1,6 +1,5 @@
 package controller.Interfacing;
 
-import enums.EDirection;
 import model.LivingElements.Hero;
 import view.gui.AvatarPanel;
 
@@ -20,7 +19,6 @@ public class AvatarPanelController {
     private String playerName = "";
 
 
-
     public AvatarPanelController(GUIController guiController, AvatarPanel AvatarPanel, ArrayList<Hero> heroes, boolean isFromDatabase) {
         this.avatarPanel = AvatarPanel;
         this.guiController = guiController;
@@ -34,40 +32,7 @@ public class AvatarPanelController {
         avatarPanel.addSelectListener(onSelectedListener);
         avatarPanel.addTxtPlayerNameDocumentListener(txtPlayerNameDocListener);
         avatarPanel.addBtnSubmitListener(onSumbit);
-       // avatarPanel.addOnDownListener(onDownListener);
-
     }
-
-    AbstractAction onDownListener = new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            guiController.move(EDirection.DOWN);
-            System.out.println("D\n");
-
-        }
-    };
-
-    AbstractAction onUpListener = new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            guiController.move(EDirection.UP);
-            System.out.println("Up\n");
-        }
-    };
-
-    AbstractAction onLeftListener = new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            guiController.move(EDirection.LEFT);
-        }
-    };
-
-    AbstractAction onRightListener = new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            guiController.move(EDirection.RIGHT);
-        }
-    };
 
     private AbstractAction onSelectedListener = new AbstractAction() {
         @Override
@@ -117,6 +82,4 @@ public class AvatarPanelController {
                 }
             }
     };
-
-
 }

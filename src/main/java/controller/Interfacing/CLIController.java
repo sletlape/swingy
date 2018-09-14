@@ -119,11 +119,6 @@ public class CLIController extends AbstractInterfaceController{
         return false;
     }
 
-    private void gainMovePoints() {
-        int movePoints = arenaController.getArena().getHero().getXp()+15;
-        arenaController.getArena().getHero().setXp(movePoints);
-    }
-
     private boolean fightOrFlight(String input) {
         boolean validInput = false;
         switch (input)

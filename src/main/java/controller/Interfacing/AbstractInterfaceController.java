@@ -25,6 +25,7 @@ public abstract class AbstractInterfaceController {
 
     public void move(EDirection direction){
         arenaController.move(direction);
+
         updateUserInterface();
     }
 
@@ -35,6 +36,11 @@ public abstract class AbstractInterfaceController {
     abstract void switchUI();
 
     abstract void updateUserInterface();
+
+    protected void gainMovePoints() {
+        int movePoints = arenaController.getArena().getHero().getXp()+15;
+        arenaController.getArena().getHero().setXp(movePoints);
+    }
 
     protected void fightVillain(){
         arenaController.fight();

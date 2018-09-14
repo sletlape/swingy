@@ -15,10 +15,15 @@ public class WorldPanelController {
         this.guiController = guiController;
 
         guiController.updateUserInterface();
-        addAllListeners();
+        if (!guiController.arenaController.getArena().isInFight()) {
+            addAllMoveListeners();
+            this.guiController.gainMovePoints();
+        }else{
+            System.out.println("Fighting");
+        }
     }
 
-    private void addAllListeners() {
+    private void addAllMoveListeners() {
         worldPanel.addOnUpListener(onUpListener);
         worldPanel.addOnDownListener(onDownListener);
         worldPanel.addOnLeftListener(onLeftListener);
@@ -28,9 +33,6 @@ public class WorldPanelController {
     AbstractAction onDownListener = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            guiController.move(EDirection.DOWN);
-            System.out.println("D\n");
-
         }
     };
 
@@ -38,7 +40,6 @@ public class WorldPanelController {
         @Override
         public void actionPerformed(ActionEvent e) {
             guiController.move(EDirection.UP);
-            System.out.println("Up\n");
         }
     };
 
