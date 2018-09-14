@@ -1,5 +1,6 @@
 package view.gui;
 
+import model.LivingElements.Hero;
 import model.mapElements.Arena;
 
 import javax.swing.*;
@@ -7,12 +8,11 @@ import java.awt.*;
 
 public class WorldPanel extends AWindowPanel {
     MapPanel mapPanel = new MapPanel();
-    //StatsPanel statsPanel = new StatsPanel();
+    TextArea statsText = new TextArea();
     private final int WIF = JComponent.WHEN_IN_FOCUSED_WINDOW;
 
     public WorldPanel(Arena arena) {
         this.setLayout(new BorderLayout());
-        TextArea statsText = new TextArea();
         statsText.setEditable(false);
         mapPanel.generateMap(arena.getWorldMap().getSize());
         //Get the stats from the arenaController and display them in the statsPanel;
@@ -23,9 +23,14 @@ public class WorldPanel extends AWindowPanel {
         updatePanel(arena);
     }
 
+    public void updatePlayerStats(Hero hero){
+        statsText.setText(hero.toString());
+    }
+
     @Override
     void updatePanel(Arena arena) {
         mapPanel.updateValues(arena);
+        updatePlayerStats(arena.getHero());
     }
 
     public void addOnUpListener(AbstractAction onUpListener) {

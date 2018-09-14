@@ -22,6 +22,19 @@ public class Hero extends LiveEntity{
     @Transient
     Point lastPoint = null;
 
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "\n id=" + id +
+                "\n heroClass = " + heroClass +
+                "\n name = " + name + '\'' +
+                "\n hp =" + hp +
+                "\n xp = " + xp +
+                "\n level = " + level +
+                "\n artifactClass = " + artifactClass +
+                '}';
+    }
+
     public Hero(String name, EHeroClass heroClass, EArtifactClass artifactClass) {
         super(name, 100, 1, 1);
         this.heroClass = heroClass;

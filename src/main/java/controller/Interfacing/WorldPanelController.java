@@ -23,7 +23,6 @@ public class WorldPanelController {
         worldPanel.addOnDownListener(onDownListener);
         worldPanel.addOnLeftListener(onLeftListener);
         worldPanel.addOnRightListener(onRightListener);
-
     }
 
     AbstractAction onDownListener = new AbstractAction() {
