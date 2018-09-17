@@ -1,6 +1,7 @@
 package controller.Entity;
 
 import controller.Battle;
+import controller.Interfacing.AbstractInterfaceController;
 import controller.ValidationControl.PlayerValidation;
 import enums.EDirection;
 import enums.EHeroClass;
@@ -35,39 +36,48 @@ public class ArenaController {
     }
 
     public void move(EDirection direction) {
-        arena.setWasInfight(false);
-        arena.getGameMessages().clearMessages();
-        Point newPoint = new Point(arena.getHero().getPoint());
-        arena.getHero().setLastPoint(arena.getHero().getPoint());
+        if (!arena.isInFight() && !arena.isGameOver()) {
+            arena.setWasInfight(false);
+            arena.getGameMessages().clearMessages();
+            Point newPoint = new Point(arena.getHero().getPoint());
+            arena.getHero().setLastPoint(arena.getHero().getPoint());
 
-        if (isWithinBoundaries(direction)) {
-            //Point runToPoint = arena.getHero().getPoint();
-            switch (direction) {
-                case UP:
-                    newPoint.y--;
-                    break;
-                case DOWN:
-                    newPoint.y++;
-                    break;
-                case LEFT:
-                    newPoint.x--;
-                    break;
-                case RIGHT:
-                    newPoint.x++;
-                    break;
+            if (isWithinBoundaries(direction)) {
+                switch (direction) {
+                    case UP:
+                        newPoint.y--;
+                        break;
+                    case DOWN:
+                        newPoint.y++;
+                        break;
+                    case LEFT:
+                        newPoint.x--;
+                        break;
+                    case RIGHT:
+                        newPoint.x++;
+                        break;
+                }
+            } else {
+                repository.update(arena.getHero());
+                arena.setGameOver(true);
             }
-        }else {
-            repository.update(arena.getHero());
-            arena.setGameOver(true);
+
+            mapController.removeObject(arena.getHero().getPoint());
+            arena.getHero().setPoint(newPoint);
+
+            if (isColliding(newPoint))
+                arena.setInFight(true);
+            else
+                mapController.addObject(arena.getHero());
+            gainMovePoints();
         }
+    }
 
-        mapController.removeObject(arena.getHero().getPoint());
-        arena.getHero().setPoint(newPoint);
 
-        if (isColliding(newPoint))
-            arena.setInFight(true);
-        else
-            mapController.addObject(arena.getHero());
+
+    protected void gainMovePoints() {
+        int movePoints = this.getArena().getHero().getXp()+15;
+        this.getArena().getHero().setXp(movePoints);
     }
 
     private boolean isColliding(Point newPoint) {

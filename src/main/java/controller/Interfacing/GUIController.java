@@ -49,9 +49,17 @@ public  class GUIController extends AbstractInterfaceController {
     }
 
     public void showWorldPanel() {
-        WorldPanel worldPanel = new WorldPanel(arenaController.getArena());
+        WorldPanel worldPanel = new WorldPanel(arenaController.getArena(), this);
         WorldPanelController menuController = new WorldPanelController(this, worldPanel);
         switchPanel(worldPanel);
+    }
+    public void performFight() {
+
+        this.fightVillain();
+    }
+
+    public void performFlight() {
+        this.runFromVillain();
     }
 
     public void showNewAvatarPanel() {

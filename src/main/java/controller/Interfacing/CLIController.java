@@ -96,7 +96,6 @@ public class CLIController extends AbstractInterfaceController{
 
         if (!arenaController.getArena().isInFight()){
             validChoice = moveEvaluation(input);
-            gainMovePoints();
         }else {
             validChoice = fightOrFlight(input);
         }

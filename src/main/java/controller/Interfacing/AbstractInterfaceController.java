@@ -4,7 +4,6 @@ import controller.Entity.ArenaController;
 import enums.EDirection;
 import enums.EHeroClass;
 import model.LivingElements.Hero;
-import model.mapElements.Arena;
 
 import java.util.ArrayList;
 
@@ -36,11 +35,6 @@ public abstract class AbstractInterfaceController {
     abstract void switchUI();
 
     abstract void updateUserInterface();
-
-    protected void gainMovePoints() {
-        int movePoints = arenaController.getArena().getHero().getXp()+15;
-        arenaController.getArena().getHero().setXp(movePoints);
-    }
 
     protected void fightVillain(){
         arenaController.fight();

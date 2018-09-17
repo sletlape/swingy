@@ -46,6 +46,8 @@ public class MapPanel extends JPanel {
                     mapCell.setValues("V");
                     mapCell.setBackground(Color.red);
                 }
+                if (y >= worldMap.getSize() || x >= worldMap.getSize())
+                    arena.setGameOver(true);
             }
         }
     }

@@ -13,7 +13,6 @@ public class WorldPanelController {
     public WorldPanelController(GUIController guiController, WorldPanel worldPanel) {
         this.worldPanel = worldPanel;
         this.guiController = guiController;
-
         guiController.updateUserInterface();
         addAllMoveListeners();
     }
@@ -52,5 +51,4 @@ public class WorldPanelController {
             guiController.move(EDirection.RIGHT);
         }
     };
-
 }
