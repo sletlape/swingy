@@ -20,10 +20,10 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- add resources here -->
-        <!-- <mapping class="model.mapElements.Arena"></mapping> -->
-        <!-- <mapping class="model.LivingElements.LiveEntity"></mapping> -->
-        <mapping class="model.LivingElements.Hero"></mapping>
-        <!-- <mapping class="model.mapElements.WorldMap"></mapping> -->
+        <!-- <mapping class="za.co.wethinkcode.sletlape.swingy.model.mapElements.Arena"></mapping> -->
+        <!-- <mapping class="za.co.wethinkcode.sletlape.swingy.model.LivingElements.LiveEntity"></mapping> -->
+        <mapping class="za.co.wethinkcode.sletlape.swingy.model.LivingElements.Hero"></mapping>
+        <!-- <mapping class="za.co.wethinkcode.sletlape.swingy.model.mapElements.WorldMap"></mapping> -->
 
 
     </session-factory>
